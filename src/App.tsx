@@ -1,5 +1,5 @@
 function App() {
-  return <div>Clinic ERP</div>;
+  return <div className="text-red-500">Clinic ERP</div>;
 }
 
 export default App;
