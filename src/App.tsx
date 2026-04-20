@@ -1,18 +1,17 @@
-import { useTranslation } from "react-i18next";
 import { Button } from "./components/ui/button";
-import i18n from "./shared/lib/localization/i18n";
+import { useLocalization } from "./shared/lib/localization/useLocalization";
 
 function App() {
-  const { t } = useTranslation();
+  const { t, language, setLanguage } = useLocalization();
   return (
     <div>
-      <div className="text-red-500">{t("app_title", { ns: "p001" })}</div>
+      <div className="text-red-500">{t("app_title")}</div>
       <Button
         onClick={() => {
-          i18n.changeLanguage("ar");
+          setLanguage(language == "ar" ? "en" : "ar");
         }}
       >
-        {t("click", { ns: "p001" })}
+        {t("click")}
       </Button>
       <Button>{t("save")}</Button>
     </div>
