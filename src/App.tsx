@@ -1,7 +1,9 @@
 import { Button } from "./components/ui/button";
+import useLocalizationInit from "./shared/lib/localization/initLocalization";
 import { useLocalization } from "./shared/lib/localization/useLocalization";
 
 function App() {
+  useLocalizationInit();
   const { t, language, setLanguage } = useLocalization();
   return (
     <div>
