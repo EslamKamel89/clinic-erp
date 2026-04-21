@@ -19,9 +19,12 @@ export async function loadNamespace(namespace: string) {
 
     // const data = await response.json();
     await sleep(2);
-    const data = {
-      click: "Click Me!!!!",
-    };
+    const data =
+      language === "en"
+        ? {
+            click: "Click Me!!!!",
+          }
+        : { click: "اضغط هنااااا" };
     i18n.addResourceBundle(language, namespace, data, true, true);
     i18n.changeLanguage(language);
     loadedNamespaces.add(cacheKey);
