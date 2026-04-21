@@ -9,7 +9,8 @@ i18n.use(initReactI18next).init({
   lng: "en",
   fallbackLng: "en",
   ns: ["p000", "p001"],
-  defaultNS: "p001",
+  // i can't use the default namespace to be for example p001 because if i am on another page for example p012 and i forget to add the right namespace i want it to fail not to try to find localization values from other pages
+  defaultNS: "p000",
   fallbackNS: "p000",
   resources: {
     en: {
