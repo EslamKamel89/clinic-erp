@@ -9,6 +9,7 @@ export default function useLocalizationInit() {
       const direction = getDirection(language);
       document.documentElement.lang = language;
       document.documentElement.dir = direction;
+      // loadedNamespaces.clear();
     };
     update();
     i18n.on("languageChanged", update);
