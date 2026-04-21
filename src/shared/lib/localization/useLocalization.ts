@@ -5,9 +5,15 @@ export function useLocalization(pageId: Namespace) {
   const { t: originalT, i18n } = useTranslation();
   const language = i18n.language;
   function t(key: string) {
-    return originalT(key, {
+    const result = originalT(key, {
       ns: [pageId, "p000"],
     });
+    if (result === key) {
+      console.warn(
+        `[i18n] Missing key "${key}" in namespace "${pageId}" and fallback`,
+      );
+    }
+    return result;
   }
   return {
     t,
