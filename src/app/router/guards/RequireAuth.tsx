@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuthStore } from "../../../features/auth/store/auth.store";
 
 const RequireAuth = () => {
-  const token = null; // this is placeholder for the token. token will be in zustand store.
+  const token = useAuthStore((state) => state.token);
   if (!token) {
     return <Navigate to="/login" replace />;
   }
