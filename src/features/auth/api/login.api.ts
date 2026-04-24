@@ -1,16 +1,21 @@
 import axios from "axios";
-import { API_BASE_URL } from "../../../shared/lib/config/api";
+import { normalizeApiError } from "../../../shared/lib/api/error";
+import { API_BASE_URL, API_ENDPOINTS } from "../../../shared/lib/config/api";
 import type { LoginResponseRaw } from "../types/auth.types";
 export async function loginApi(
   username: string,
-  password: string | number,
+  password: string,
 ): Promise<LoginResponseRaw> {
-  const response = await axios.post<LoginResponseRaw>(
-    `${API_BASE_URL}/api/userlogin`,
-    {
-      username,
-      password,
-    },
-  );
-  return response.data;
+  try {
+    const response = await axios.post<LoginResponseRaw>(
+      `${API_BASE_URL}${API_ENDPOINTS.login}`,
+      {
+        username,
+        password,
+      },
+    );
+    return response.data;
+  } catch (error) {
+    throw normalizeApiError(error);
+  }
 }
