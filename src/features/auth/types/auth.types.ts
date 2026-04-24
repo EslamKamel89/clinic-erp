@@ -85,8 +85,7 @@ export type User = {
 export type MenuItem = {
   label: string;
   icon?: string;
-  // the path field will be removed from the response because the path is a frontend concern and will not be send from the backend
-  //   path?: string;
+  path?: string;
   children?: MenuItem[];
 };
 
