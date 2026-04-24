@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import RequireAuth from "./guards/RequireAuth";
 import { AppLayout } from "./layouts/AppLayout";
 import { PublicLayout } from "./layouts/PublicLayout";
 import { RootLayout } from "./layouts/RootLayout";
@@ -12,8 +13,13 @@ export const router = createBrowserRouter([
         children: [{ path: "/login", element: <div>Login page</div> }],
       },
       {
-        element: <AppLayout />,
-        children: [{ path: "/", element: <div>App Home</div> }],
+        element: <RequireAuth />,
+        children: [
+          {
+            element: <AppLayout />,
+            children: [{ path: "/", element: <div>App Home</div> }],
+          },
+        ],
       },
     ],
   },
