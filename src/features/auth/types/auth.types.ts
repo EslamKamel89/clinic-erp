@@ -85,7 +85,8 @@ export type User = {
 export type MenuItem = {
   label: string;
   icon?: string;
-  path?: string;
+  // the path field will be removed from the response because the path is a frontend concern and will not be send from the backend
+  //   path?: string;
   children?: MenuItem[];
 };
 
@@ -93,7 +94,7 @@ export type AuthModel = {
   user: User;
   token: string;
   menu: MenuItem[];
-  lang: Language;
+  language: Language;
   direction: "rtl" | "ltr";
 };
 
@@ -117,5 +118,12 @@ export type LoginResponseRaw = {
     Option_ID: number;
     MenuStyle_ID: number;
   };
-  menu: any[]; // refine later in serializer
+  menu: RawMenuItem[];
+};
+
+export type RawMenuItem = {
+  menu_name: string;
+  icon?: string;
+  pagelink?: string;
+  children?: RawMenuItem[];
 };
