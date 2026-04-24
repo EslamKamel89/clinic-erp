@@ -1,25 +1,35 @@
 import { Outlet } from "react-router-dom";
+import { useLogout } from "../../../features/auth/hooks/useLogout";
 
 export const AppLayout = () => {
+  const { logout } = useLogout();
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Header (Menu Placeholder) */}
-      <header className="h-14 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="h-full max-w-7xl mx-auto px-4 flex items-center justify-between">
+      <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="h-14 max-w-7xl mx-auto px-4 flex items-center justify-between">
           {/* Left: Logo / App Name */}
-          <div className="text-sm font-medium tracking-tight">Clinic ERP</div>
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-semibold tracking-tight">
+              Clinic ERP
+            </span>
+          </div>
 
           {/* Right: Menu Placeholder */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            {/* Menu will be implemented later */}
-            Menu
+          <div className="flex items-center gap-2">
+            <button
+              onClick={logout}
+              className="text-sm text-muted-foreground px-3 py-1.5 rounded-md hover:bg-muted hover:text-foreground transition-colors"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </header>
 
       {/* Content */}
       <main className="flex-1 px-4 py-6">
-        <div className="mx-auto w-full max-w-7xl">
+        <div className="mx-auto w-full max-w-7xl space-y-4">
           <Outlet />
         </div>
       </main>
@@ -31,8 +41,8 @@ export const AppLayout = () => {
             © {new Date().getFullYear()} Clinic ERP
           </p>
 
-          <div className="text-xs text-muted-foreground">
-            All rights reserved
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <span>All rights reserved</span>
           </div>
         </div>
       </footer>

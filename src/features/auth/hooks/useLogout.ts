@@ -7,9 +7,9 @@ export function useLogout() {
   const queryClient = useQueryClient();
   const setToken = useAuthStore((s) => s.setToken);
   const logout = () => {
-    queryClient.clear();
     setToken(null);
+    queryClient.clear();
     navigate("/login");
-    return { logout };
   };
+  return { logout };
 }
