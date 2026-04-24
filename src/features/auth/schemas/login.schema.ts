@@ -1,7 +1,8 @@
 import { z } from "zod";
 
 export const loginSchema = z.object({
-  username: z.string().min(1, "validation.username_required"),
-  password: z.string().min(1, "validation.password_required"),
+  // will be use in the ui like this t("validation:username_required") where validation is the namespace
+  username: z.string().min(1, "username_required"),
+  password: z.string().min(1, "password_required"),
 });
-export type LoginFormValues = z.infer<typeof loginSchema>;
+export type LoginFormData = z.infer<typeof loginSchema>;

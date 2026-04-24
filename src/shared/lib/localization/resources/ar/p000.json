@@ -1,6 +1,6 @@
 {
-    "cancel": "إلغاء",
-    "save": "حفظ",
-    "app_title": "نظام العيادة",
-    "click": "اضغط"
+    "username_placeholder": "اسم المستخدم",
+    "password_placeholder": "كلمة المرور",
+    "login_button": "تسجيل الدخول",
+    "loading": "جارٍ التحميل..."
 }

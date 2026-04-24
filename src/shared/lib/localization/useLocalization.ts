@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { loadNamespace } from "./runtime/loadNamespace";
-type Namespace = "p000" | "p001";
+type Namespace = "p000" | "p001" | "validation";
 
 export function useLocalization(pageId: Namespace) {
   const { t: originalT, i18n } = useTranslation(pageId, { useSuspense: false });
@@ -19,9 +19,9 @@ export function useLocalization(pageId: Namespace) {
     }
     return result;
   }
-
+  const staticNamespaces = ["p000", "validation"];
   useEffect(() => {
-    if (pageId != "p000") {
+    if (!staticNamespaces.includes(pageId)) {
       loadNamespace(pageId);
     }
   }, [pageId, language]);

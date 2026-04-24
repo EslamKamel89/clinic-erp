@@ -1,1 +1,6 @@
-{}
+{
+    "username_placeholder": "Username",
+    "password_placeholder": "Password",
+    "login_button": "Login",
+    "loading": "Loading..."
+}
