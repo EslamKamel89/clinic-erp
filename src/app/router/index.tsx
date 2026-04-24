@@ -3,6 +3,7 @@ import RequireAuth from "./guards/RequireAuth";
 import { AppLayout } from "./layouts/AppLayout";
 import { PublicLayout } from "./layouts/PublicLayout";
 import { RootLayout } from "./layouts/RootLayout";
+import { LoginPage } from "./pages/LoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -10,7 +11,7 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <PublicLayout />,
-        children: [{ path: "/login", element: <div>Login page</div> }],
+        children: [{ path: "/login", element: <LoginPage /> }],
       },
       {
         element: <RequireAuth />,
