@@ -2,5 +2,7 @@
     "username_placeholder": "Username",
     "password_placeholder": "Password",
     "login_button": "Login",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "username_label": "Username",
+    "password_label": "Password"
 }

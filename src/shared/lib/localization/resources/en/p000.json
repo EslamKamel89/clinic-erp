@@ -1,6 +1,30 @@
 {
-    "cancel": "Cancel",
-    "save": "Save",
-    "app_title": "Clinic ERP",
-    "click": "Click"
+    "actions": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "delete": "Delete",
+        "edit": "Edit",
+        "add": "Add",
+        "close": "Close",
+        "back": "Back",
+        "next": "Next"
+    },
+    "status": {
+        "loading": "Loading...",
+        "success": "Success",
+        "error": "Something went wrong",
+        "no_data": "No data available"
+    },
+    "common": {
+        "search": "Search",
+        "filter": "Filter",
+        "reset": "Reset",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "system": {
+        "app_title": "Clinic ERP",
+        "copyright": "All rights reserved"
+    }
 }

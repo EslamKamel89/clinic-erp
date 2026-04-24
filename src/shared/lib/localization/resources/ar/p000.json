@@ -1,6 +1,30 @@
 {
-    "username_placeholder": "اسم المستخدم",
-    "password_placeholder": "كلمة المرور",
-    "login_button": "تسجيل الدخول",
-    "loading": "جارٍ التحميل..."
+    "actions": {
+        "save": "حفظ",
+        "cancel": "إلغاء",
+        "confirm": "تأكيد",
+        "delete": "حذف",
+        "edit": "تعديل",
+        "add": "إضافة",
+        "close": "إغلاق",
+        "back": "رجوع",
+        "next": "التالي"
+    },
+    "status": {
+        "loading": "جارٍ التحميل...",
+        "success": "تم بنجاح",
+        "error": "حدث خطأ ما",
+        "no_data": "لا توجد بيانات"
+    },
+    "common": {
+        "search": "بحث",
+        "filter": "تصفية",
+        "reset": "إعادة تعيين",
+        "yes": "نعم",
+        "no": "لا"
+    },
+    "system": {
+        "app_title": "نظام العيادة",
+        "copyright": "جميع الحقوق محفوظة"
+    }
 }
