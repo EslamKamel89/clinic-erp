@@ -3,5 +3,9 @@ import useLocalizationInit from "../../../shared/lib/localization/initLocalizati
 
 export const RootLayout = () => {
   useLocalizationInit();
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 };
