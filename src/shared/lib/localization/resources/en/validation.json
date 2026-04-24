@@ -1,0 +1,6 @@
+{
+    "validation": {
+        "username_required": "Username is required",
+        "password_required": "Password is required"
+    }
+}
