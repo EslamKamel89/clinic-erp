@@ -1,5 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
+import i18n from "../../../shared/lib/localization/i18n";
 import { queryClientKeys } from "../../../shared/lib/query/keys";
 import { meApi } from "../api/me.api";
 import { serializeLoginResponse } from "../api/serializers/login.serializer";
@@ -30,12 +31,16 @@ export const useAuthSession = () => {
     if (!query.isSuccess) return;
     queryClient.setQueryData(queryClientKeys.auth.user, query.data.user);
     queryClient.setQueryData(queryClientKeys.auth.menu, query.data.menu);
-    //! important
-    // i will keep the language english fixed for now because there is an issue in the backend, later i will fix it.
-    // if (i18n.language !== query.data.language) {
-    //   i18n.changeLanguage(query.data.language);
-    // }
-  }, [query.isSuccess, queryClient, query.data?.menu, query.data?.user]);
+    if (i18n.language !== query.data.language) {
+      i18n.changeLanguage(query.data.language);
+    }
+  }, [
+    query.isSuccess,
+    queryClient,
+    query.data?.menu,
+    query.data?.user,
+    query.data?.language,
+  ]);
   useEffect(() => {
     if (query.isError) {
       setToken(null);

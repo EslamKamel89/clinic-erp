@@ -1,48 +1,54 @@
+// src/app/router/layouts/AppLayout.tsx
 import { Outlet } from "react-router-dom";
+import { Button } from "../../../components/ui/button";
+import { Separator } from "../../../components/ui/separator";
 import { useLogout } from "../../../features/auth/hooks/useLogout";
+import { LanguageSwitcher } from "../../../features/localization/components/LanguageSwitcher";
+import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 
 export const AppLayout = () => {
   const { logout } = useLogout();
+  const { t } = useLocalization("p000");
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Header (Menu Placeholder) */}
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="h-14 max-w-7xl mx-auto px-4 flex items-center justify-between">
-          {/* Left: Logo / App Name */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <span className="text-sm font-semibold tracking-tight">
-              Clinic ERP
+              {t("system.app_title")}
             </span>
           </div>
 
-          {/* Right: Menu Placeholder */}
-          <div className="flex items-center gap-2">
-            <button
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <Separator orientation="vertical" className="h-5" />
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={logout}
-              className="text-sm text-muted-foreground px-3 py-1.5 rounded-md hover:bg-muted hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground"
             >
-              Logout
-            </button>
+              {t("actions.logout")}
+            </Button>
           </div>
         </div>
       </header>
 
-      {/* Content */}
       <main className="flex-1 px-4 py-6">
-        <div className="mx-auto w-full max-w-7xl space-y-4">
+        <div className="mx-auto w-full max-w-7xl space-y-6">
           <Outlet />
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="border-t bg-background">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-2">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Clinic ERP
+            © {new Date().getFullYear()} {t("system.app_title")}
           </p>
 
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <span>All rights reserved</span>
+            <span>{t("system.copyright")}</span>
           </div>
         </div>
       </footer>

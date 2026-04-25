@@ -8,20 +8,24 @@
         "add": "Add",
         "close": "Close",
         "back": "Back",
-        "next": "Next"
+        "next": "Next",
+        "logout": "Logout"
     },
     "status": {
         "loading": "Loading...",
         "success": "Success",
         "error": "Something went wrong",
-        "no_data": "No data available"
+        "no_data": "No data"
     },
     "common": {
         "search": "Search",
         "filter": "Filter",
         "reset": "Reset",
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "language": "Language",
+        "arabic": "Arabic",
+        "english": "English"
     },
     "system": {
         "app_title": "Clinic ERP",
