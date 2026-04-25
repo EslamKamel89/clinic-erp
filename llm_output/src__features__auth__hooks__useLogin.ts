@@ -21,9 +21,9 @@ export function useLogin() {
     },
     onSuccess: (data) => {
       setToken(data.token);
-      // for now i will only make the language english later this will be changed because the backend always return 'ar' due to an issue that will be fixed later by the backend team.
-      // i18n.changeLanguage(data.language);
-      i18n.changeLanguage("en");
+      if (i18n.language !== data.language) {
+        i18n.changeLanguage(data.language);
+      }
       queryClient.setQueryData(queryClientKeys.auth.user, data.user);
       queryClient.setQueryData(queryClientKeys.auth.menu, data.menu);
     },

@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-25T14:15:52.412067+00:00",
+  "generated_at": "2026-04-25T18:13:11.183444+00:00",
   "source_root": "D:/windows/my_projects/react/clinic-erp",
-  "total_files": 47,
+  "total_files": 52,
   "files": [
     {
       "original_path": "index.html",
@@ -41,12 +41,12 @@
     {
       "original_path": "src/app/router/layouts/AppLayout.tsx",
       "flattened_name": "src__app__router__layouts__AppLayout.tsx",
-      "size_bytes": 1850
+      "size_bytes": 2203
     },
     {
       "original_path": "src/app/router/layouts/PublicLayout.tsx",
       "flattened_name": "src__app__router__layouts__PublicLayout.tsx",
-      "size_bytes": 1051
+      "size_bytes": 1536
     },
     {
       "original_path": "src/app/router/layouts/RootLayout.tsx",
@@ -64,6 +64,11 @@
       "size_bytes": 2941
     },
     {
+      "original_path": "src/components/ui/dropdown-menu.tsx",
+      "flattened_name": "src__components__ui__dropdown-menu.tsx",
+      "size_bytes": 8935
+    },
+    {
       "original_path": "src/components/ui/field.tsx",
       "flattened_name": "src__components__ui__field.tsx",
       "size_bytes": 5887
@@ -79,9 +84,14 @@
       "size_bytes": 592
     },
     {
+      "original_path": "src/components/ui/select.tsx",
+      "flattened_name": "src__components__ui__select.tsx",
+      "size_bytes": 6737
+    },
+    {
       "original_path": "src/components/ui/separator.tsx",
       "flattened_name": "src__components__ui__separator.tsx",
-      "size_bytes": 644
+      "size_bytes": 630
     },
     {
       "original_path": "src/features/auth/api/login.api.ts",
@@ -106,12 +116,12 @@
     {
       "original_path": "src/features/auth/hooks/useAuthSession.ts",
       "flattened_name": "src__features__auth__hooks__useAuthSession.ts",
-      "size_bytes": 1796
+      "size_bytes": 1690
     },
     {
       "original_path": "src/features/auth/hooks/useLogin.ts",
       "flattened_name": "src__features__auth__hooks__useLogin.ts",
-      "size_bytes": 1438
+      "size_bytes": 1274
     },
     {
       "original_path": "src/features/auth/hooks/useLogout.ts",
@@ -132,6 +142,21 @@
       "original_path": "src/features/auth/types/auth.types.ts",
       "flattened_name": "src__features__auth__types__auth.types.ts",
       "size_bytes": 3178
+    },
+    {
+      "original_path": "src/features/localization/api/changeLanguageApi.ts",
+      "flattened_name": "src__features__localization__api__changeLanguageApi.ts",
+      "size_bytes": 491
+    },
+    {
+      "original_path": "src/features/localization/components/LanguageSwitcher.tsx",
+      "flattened_name": "src__features__localization__components__LanguageSwitcher.tsx",
+      "size_bytes": 1479
+    },
+    {
+      "original_path": "src/features/localization/hooks/useChangeLanguage.ts",
+      "flattened_name": "src__features__localization__hooks__useChangeLanguage.ts",
+      "size_bytes": 1090
     },
     {
       "original_path": "src/lib/utils.ts",
@@ -156,7 +181,7 @@
     {
       "original_path": "src/shared/lib/config/api.ts",
       "flattened_name": "src__shared__lib__config__api.ts",
-      "size_bytes": 156
+      "size_bytes": 198
     },
     {
       "original_path": "src/shared/lib/helpers/pr.ts",
@@ -186,7 +211,7 @@
     {
       "original_path": "src/shared/lib/localization/resources/ar/p000.json",
       "flattened_name": "src__shared__lib__localization__resources__ar__p000.json",
-      "size_bytes": 820
+      "size_bytes": 982
     },
     {
       "original_path": "src/shared/lib/localization/resources/ar/p001.json",
@@ -201,7 +226,7 @@
     {
       "original_path": "src/shared/lib/localization/resources/en/p000.json",
       "flattened_name": "src__shared__lib__localization__resources__en__p000.json",
-      "size_bytes": 697
+      "size_bytes": 809
     },
     {
       "original_path": "src/shared/lib/localization/resources/en/p001.json",

@@ -31,12 +31,16 @@ export const useAuthSession = () => {
     if (!query.isSuccess) return;
     queryClient.setQueryData(queryClientKeys.auth.user, query.data.user);
     queryClient.setQueryData(queryClientKeys.auth.menu, query.data.menu);
-    // i will keep the language english fixed for now because there is an issue in the backend, later i will fix it.
-    i18n.changeLanguage("en");
-    // if (i18n.language !== query.data.language) {
-    //   i18n.changeLanguage(query.data.language);
-    // }
-  }, [query.isSuccess, queryClient, query.data?.menu, query.data?.user]);
+    if (i18n.language !== query.data.language) {
+      i18n.changeLanguage(query.data.language);
+    }
+  }, [
+    query.isSuccess,
+    queryClient,
+    query.data?.menu,
+    query.data?.user,
+    query.data?.language,
+  ]);
   useEffect(() => {
     if (query.isError) {
       setToken(null);
