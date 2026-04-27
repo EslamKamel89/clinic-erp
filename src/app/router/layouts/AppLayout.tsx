@@ -9,7 +9,6 @@ import { useLocalization } from "../../../shared/lib/localization/useLocalizatio
 export const AppLayout = () => {
   const { logout } = useLogout();
   const { t } = useLocalization("p000");
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
