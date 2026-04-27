@@ -1,15 +1,12 @@
 // src/app/router/layouts/AppLayout.tsx
 import { Outlet } from "react-router-dom";
-import { Button } from "../../../components/ui/button";
-import { Separator } from "../../../components/ui/separator";
 import { useAuthSession } from "../../../features/auth/hooks/useAuthSession";
 import { useLogout } from "../../../features/auth/hooks/useLogout";
 import { useUserMenu } from "../../../features/auth/hooks/useUserMenu";
 import { useAuthStore } from "../../../features/auth/store/auth.store";
-import { LanguageSwitcher } from "../../../features/localization/components/LanguageSwitcher";
+import { ActionMenu } from "../../../features/navigation/components/ActionMenu";
 import { MenuItemParent } from "../../../features/navigation/components/MenuItemNode";
 import { useLocalization } from "../../../shared/lib/localization/useLocalization";
-
 export const AppLayout = () => {
   const { logout } = useLogout();
   const { t } = useLocalization("p000");
@@ -51,18 +48,7 @@ export const AppLayout = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <LanguageSwitcher />
-            <Separator orientation="vertical" className="h-5" />
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={logout}
-              className="text-muted-foreground hover:text-foreground"
-            >
-              {t("actions.logout")}
-            </Button>
-          </div>
+          <ActionMenu t={t} logoutCallback={logout} />
         </div>
       </header>
 
