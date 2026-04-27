@@ -5,8 +5,10 @@ import { useLogout } from "../../../features/auth/hooks/useLogout";
 import { useUserMenu } from "../../../features/auth/hooks/useUserMenu";
 import { useAuthStore } from "../../../features/auth/store/auth.store";
 import { ActionMenu } from "../../../features/navigation/components/ActionMenu";
-import { MenuItemParent } from "../../../features/navigation/components/MenuItemNode";
+import { DesktopMenu } from "../../../features/navigation/components/DesktopMenu";
+import { MobileMenu } from "../../../features/navigation/components/MobileMenu";
 import { useLocalization } from "../../../shared/lib/localization/useLocalization";
+
 export const AppLayout = () => {
   const { logout } = useLogout();
   const { t } = useLocalization("p000");
@@ -19,11 +21,8 @@ export const AppLayout = () => {
   if (isHydrating) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="flex flex-col items-center gap-3">
-          {/* Spinner */}
-          <div className="size-6 animate-spin rounded-full border-2 border-muted border-t-primary" />
-
-          {/* Text */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="size-7 animate-spin rounded-full border-2 border-muted border-t-primary" />
           <p className="text-sm text-muted-foreground">Loading...</p>
         </div>
       </div>
@@ -32,41 +31,50 @@ export const AppLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      {/* Header */}
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="h-14 max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <div className="">
-            <div className="flex items-center gap-6">
-              <span className="text-sm font-semibold tracking-tight">
-                {t("system.app_title")}
-              </span>
+          {/* Left Section */}
+          <div className="flex items-center gap-4">
+            {/* Mobile Menu */}
+            <MobileMenu menus={menus} />
 
-              <div className="flex space-x-2">
-                {menus.map((m) => (
-                  <MenuItemParent item={m} key={"MenuItemParent." + m.label} />
-                ))}
-              </div>
+            {/* App Title */}
+            <span className="text-sm font-semibold tracking-tight whitespace-nowrap">
+              {t("system.app_title")}
+            </span>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center">
+              <DesktopMenu menus={menus} />
             </div>
           </div>
 
-          <ActionMenu t={t} logoutCallback={logout} />
+          {/* Right Section */}
+          <div className="flex items-center">
+            <ActionMenu t={t} logoutCallback={logout} />
+          </div>
         </div>
       </header>
 
+      {/* Main */}
       <main className="flex-1 px-4 py-6">
-        <div className="mx-auto w-full max-w-7xl space-y-6">
-          <Outlet />
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="rounded-lg border bg-card p-4 md:p-6 shadow-sm">
+            <Outlet />
+          </div>
         </div>
       </main>
 
+      {/* Footer */}
       <footer className="border-t bg-background">
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} {t("system.app_title")}
+        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
+          <p>
+            © {new Date().getFullYear()}{" "}
+            <span className="font-medium">{t("system.app_title")}</span>
           </p>
 
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <span>{t("system.copyright")}</span>
-          </div>
+          <span className="opacity-80">{t("system.copyright")}</span>
         </div>
       </footer>
     </div>

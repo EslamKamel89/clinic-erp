@@ -15,7 +15,7 @@ type Props = {
   item: MenuItem;
 };
 
-export const MenuItemParent = ({ item }: Props) => {
+export const MenuItemParentDesktop = ({ item }: Props) => {
   return (
     <DropdownMenu key={item.label} dir={i18n.dir()}>
       <DropdownMenuTrigger asChild>
@@ -26,14 +26,14 @@ export const MenuItemParent = ({ item }: Props) => {
 
       <DropdownMenuContent>
         {item.children?.map((child) => (
-          <MenuItemNode key={child.label} item={child} />
+          <MenuItemNodeDesktop key={child.label} item={child} />
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
 
-const MenuItemNode = ({ item }: Props) => {
+export const MenuItemNodeDesktop = ({ item }: Props) => {
   const hasChildren = item.children && item.children.length > 0;
 
   if (!hasChildren) {
@@ -50,7 +50,7 @@ const MenuItemNode = ({ item }: Props) => {
 
       <DropdownMenuSubContent>
         {item.children!.map((child) => (
-          <MenuItemNode key={child.label} item={child} />
+          <MenuItemNodeDesktop key={child.label} item={child} />
         ))}
       </DropdownMenuSubContent>
     </DropdownMenuSub>
