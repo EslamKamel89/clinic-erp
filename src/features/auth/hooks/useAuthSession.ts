@@ -10,6 +10,7 @@ import type { MenuItem, User } from "../types/auth.types";
 export const useAuthSession = () => {
   const token = useAuthStore((s) => s.token);
   const queryClient = useQueryClient();
+  const setToken = useAuthStore((s) => s.setToken);
   const existingUser = queryClient.getQueryData<User>(
     queryClientKeys.auth.user,
   );
@@ -17,15 +18,16 @@ export const useAuthSession = () => {
   const existingMenu = queryClient.getQueryData<MenuItem[]>(
     queryClientKeys.auth.menu,
   );
-  const setToken = useAuthStore((s) => s.setToken);
   const query = useQuery({
     queryKey: queryClientKeys.auth.session,
-    enabled: !!token && !existingUser && !existingMenu,
+    // enabled: !!token && !existingUser && !existingMenu,
+    enabled: !!token,
     queryFn: async () => {
       const response = await meApi();
       return serializeLoginResponse(response);
     },
     retry: false,
+    staleTime: Infinity,
   });
   useEffect(() => {
     if (!query.isSuccess) return;

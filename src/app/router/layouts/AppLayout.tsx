@@ -2,13 +2,37 @@
 import { Outlet } from "react-router-dom";
 import { Button } from "../../../components/ui/button";
 import { Separator } from "../../../components/ui/separator";
+import { useAuthSession } from "../../../features/auth/hooks/useAuthSession";
 import { useLogout } from "../../../features/auth/hooks/useLogout";
+import { useUserMenu } from "../../../features/auth/hooks/useUserMenu";
+import { useAuthStore } from "../../../features/auth/store/auth.store";
 import { LanguageSwitcher } from "../../../features/localization/components/LanguageSwitcher";
+import { MenuItemNode } from "../../../features/navigation/components/MenuItemNode";
 import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 
 export const AppLayout = () => {
   const { logout } = useLogout();
   const { t } = useLocalization("p000");
+  const menus = useUserMenu();
+  const token = useAuthStore((s) => s.token);
+  const session = useAuthSession();
+
+  const isHydrating = !!token && session.isLoading;
+
+  if (isHydrating) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-3">
+          {/* Spinner */}
+          <div className="size-6 animate-spin rounded-full border-2 border-muted border-t-primary" />
+
+          {/* Text */}
+          <p className="text-sm text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -36,6 +60,11 @@ export const AppLayout = () => {
 
       <main className="flex-1 px-4 py-6">
         <div className="mx-auto w-full max-w-7xl space-y-6">
+          <div>
+            {menus.map((m) => (
+              <MenuItemNode item={m} key={m.label} />
+            ))}
+          </div>
           <Outlet />
         </div>
       </main>
