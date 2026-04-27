@@ -5,22 +5,14 @@ import { queryClientKeys } from "../../../shared/lib/query/keys";
 import { meApi } from "../api/me.api";
 import { serializeLoginResponse } from "../api/serializers/login.serializer";
 import { useAuthStore } from "../store/auth.store";
-import type { MenuItem, User } from "../types/auth.types";
 
 export const useAuthSession = () => {
   const token = useAuthStore((s) => s.token);
   const queryClient = useQueryClient();
   const setToken = useAuthStore((s) => s.setToken);
-  const existingUser = queryClient.getQueryData<User>(
-    queryClientKeys.auth.user,
-  );
 
-  const existingMenu = queryClient.getQueryData<MenuItem[]>(
-    queryClientKeys.auth.menu,
-  );
   const query = useQuery({
     queryKey: queryClientKeys.auth.session,
-    // enabled: !!token && !existingUser && !existingMenu,
     enabled: !!token,
     queryFn: async () => {
       const response = await meApi();

@@ -37,10 +37,18 @@ export const AppLayout = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="h-14 max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-semibold tracking-tight">
-              {t("system.app_title")}
-            </span>
+          <div className="">
+            <div className="flex items-center gap-6">
+              <span className="text-sm font-semibold tracking-tight">
+                {t("system.app_title")}
+              </span>
+
+              <div className="flex items-center gap-4">
+                {menus.map((m) => (
+                  <MenuItemNode item={m} key={m.label} />
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="flex items-center gap-3">
@@ -60,11 +68,6 @@ export const AppLayout = () => {
 
       <main className="flex-1 px-4 py-6">
         <div className="mx-auto w-full max-w-7xl space-y-6">
-          <div>
-            {menus.map((m) => (
-              <MenuItemNode item={m} key={m.label} />
-            ))}
-          </div>
           <Outlet />
         </div>
       </main>
