@@ -18,7 +18,13 @@ export const router = createBrowserRouter([
         children: [
           {
             element: <AppLayout />,
-            children: [{ path: "/", element: <div>App Home</div> }],
+            children: [
+              { path: "/", element: <div>App Home</div> },
+              { path: "/main-data/countries", element: <div>Countries</div> },
+              { path: "/main-data/cities", element: <div>Cities</div> },
+              { path: "/main-data/states", element: <div>States</div> },
+              { path: "/main-data/languages", element: <div>Languages</div> },
+            ],
           },
         ],
       },

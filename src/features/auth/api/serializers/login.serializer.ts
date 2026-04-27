@@ -33,7 +33,7 @@ function normalizeMenu(items: RawMenuItem[]): MenuItem[] {
   return items.map((item) => ({
     label: item.menu_name,
     icon: item.icon,
-    path: item.pagelink,
+    path: item.pagelink?.trim(),
     children: item?.children ? normalizeMenu(item.children) : undefined,
   }));
 }

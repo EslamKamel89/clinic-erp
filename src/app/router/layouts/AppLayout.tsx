@@ -7,7 +7,7 @@ import { useLogout } from "../../../features/auth/hooks/useLogout";
 import { useUserMenu } from "../../../features/auth/hooks/useUserMenu";
 import { useAuthStore } from "../../../features/auth/store/auth.store";
 import { LanguageSwitcher } from "../../../features/localization/components/LanguageSwitcher";
-import { MenuItemNode } from "../../../features/navigation/components/MenuItemNode";
+import { MenuItemParent } from "../../../features/navigation/components/MenuItemNode";
 import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 
 export const AppLayout = () => {
@@ -43,9 +43,9 @@ export const AppLayout = () => {
                 {t("system.app_title")}
               </span>
 
-              <div className="flex items-center gap-4">
+              <div className="flex space-x-2">
                 {menus.map((m) => (
-                  <MenuItemNode item={m} key={m.label} />
+                  <MenuItemParent item={m} key={"MenuItemParent." + m.label} />
                 ))}
               </div>
             </div>
