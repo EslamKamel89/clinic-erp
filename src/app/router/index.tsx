@@ -3,7 +3,7 @@ import RequireAuth from "./guards/RequireAuth";
 import { AppLayout } from "./layouts/AppLayout";
 import { PublicLayout } from "./layouts/PublicLayout";
 import { RootLayout } from "./layouts/RootLayout";
-import { LoginPage } from "./pages/LoginPage";
+import { LoginPage } from "./pages/auth/LoginPage";
 
 export const router = createBrowserRouter([
   {

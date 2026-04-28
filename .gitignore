@@ -26,3 +26,5 @@ summarize.py
 .llmignore
 code.txt
 llm_flatten.py
+
+src/app/router/pages/course/*
