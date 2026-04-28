@@ -4,7 +4,7 @@ import { API_ENDPOINTS } from "../../../shared/lib/config/api";
 import type { BackendPaginationRawResponse } from "../../../shared/lib/pagination/types";
 import type { CountryRaw } from "../types/country.types";
 
-export async function countryIndex(
+export async function countryIndexApi(
   page: number,
   limit: number,
 ): Promise<BackendPaginationRawResponse<CountryRaw>> {

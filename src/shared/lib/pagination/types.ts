@@ -1,4 +1,6 @@
 export type BackendPaginationRawResponse<T> = {
+  Result: boolean;
+  Message: string;
   data: T[];
   total: number;
   current_page: number;
