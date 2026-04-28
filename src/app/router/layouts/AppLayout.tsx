@@ -32,7 +32,7 @@ export const AppLayout = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-40 border-b bg-background/70 backdrop-blur-lg">
         <div className="h-14 max-w-7xl mx-auto px-4 flex items-center justify-between">
           {/* Left Section */}
           <div className="flex items-center gap-4">
@@ -40,18 +40,22 @@ export const AppLayout = () => {
             <MobileMenu menus={menus} />
 
             {/* App Title */}
-            <span className="text-sm font-semibold tracking-tight whitespace-nowrap">
+            <span className="text-sm md:text-base font-bold tracking-tight whitespace-nowrap">
               {t("system.app_title")}
             </span>
 
+            {/* Divider */}
+            <div className="hidden md:block h-5 w-px bg-border/60 mx-2" />
+
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center">
+            <div className="hidden md:flex items-center gap-1">
               <DesktopMenu menus={menus} />
             </div>
           </div>
 
           {/* Right Section */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
+            <div className="hidden md:block h-5 w-px bg-border/60 mx-2" />
             <ActionMenu t={t} logoutCallback={logout} />
           </div>
         </div>
@@ -60,7 +64,7 @@ export const AppLayout = () => {
       {/* Main */}
       <main className="flex-1 px-4 py-6">
         <div className="mx-auto w-full max-w-7xl">
-          <div className="rounded-lg border bg-card p-4 md:p-6 shadow-sm">
+          <div className="rounded-xl border bg-card p-4 md:p-6 shadow-sm">
             <Outlet />
           </div>
         </div>

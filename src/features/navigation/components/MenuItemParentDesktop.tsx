@@ -17,14 +17,35 @@ type Props = {
 
 export const MenuItemParentDesktop = ({ item }: Props) => {
   return (
-    <DropdownMenu key={item.label} dir={i18n.dir()}>
+    <DropdownMenu dir={i18n.dir()}>
       <DropdownMenuTrigger asChild>
-        <span className="text-sm cursor-pointer hover:text-primary">
+        <span
+          className="
+            px-3 py-1.5
+            text-sm font-semibold
+            rounded-md
+            cursor-pointer
+            transition-all duration-150
+            text-foreground/80
+            hover:text-primary
+            hover:bg-muted
+          "
+        >
           {item.label}
         </span>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent>
+      <DropdownMenuContent
+        align="start"
+        className="
+          min-w-[200px]
+          p-1
+          rounded-lg
+          border
+          bg-popover
+          shadow-md
+        "
+      >
         {item.children?.map((child) => (
           <MenuItemNodeDesktop key={child.label} item={child} />
         ))}
@@ -38,7 +59,16 @@ export const MenuItemNodeDesktop = ({ item }: Props) => {
 
   if (!hasChildren) {
     return (
-      <DropdownMenuItem asChild>
+      <DropdownMenuItem
+        asChild
+        className="
+          rounded-md
+          px-2 py-1.5
+          text-sm
+          transition-colors
+          hover:bg-muted
+        "
+      >
         <Link to={item.path || "#"}>{item.label}</Link>
       </DropdownMenuItem>
     );
@@ -46,9 +76,29 @@ export const MenuItemNodeDesktop = ({ item }: Props) => {
 
   return (
     <DropdownMenuSub>
-      <DropdownMenuSubTrigger>{item.label}</DropdownMenuSubTrigger>
+      <DropdownMenuSubTrigger
+        className="
+          rounded-md
+          px-2 py-1.5
+          text-sm
+          font-medium
+          transition-colors
+          hover:bg-muted
+        "
+      >
+        {item.label}
+      </DropdownMenuSubTrigger>
 
-      <DropdownMenuSubContent>
+      <DropdownMenuSubContent
+        className="
+          min-w-[200px]
+          p-1
+          rounded-lg
+          border
+          bg-popover
+          shadow-md
+        "
+      >
         {item.children!.map((child) => (
           <MenuItemNodeDesktop key={child.label} item={child} />
         ))}
