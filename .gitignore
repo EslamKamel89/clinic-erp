@@ -28,3 +28,10 @@ code.txt
 llm_flatten.py
 
 src/app/router/pages/course/*
+
+app.txt
+features__auth.txt
+features__localization.txt
+features__navigation.txt
+shared.txt
+tracked_files.txt
