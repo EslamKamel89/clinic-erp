@@ -1,3 +1,8 @@
+export type BackendPaginationRawResponse<T> = {
+  data: T[];
+  total: number;
+  current_page: number;
+};
 export type PaginationLink = {
   queryParam: string;
   label: string;

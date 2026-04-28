@@ -1,13 +1,11 @@
-import type { PaginatedResponse, PaginationLink } from "./types";
-
-type BackendPaginationResponse<T> = {
-  data: T[];
-  total: number;
-  current_page: number;
-};
+import type {
+  BackendPaginationRawResponse,
+  PaginatedResponse,
+  PaginationLink,
+} from "./types";
 
 export function transformPagination<T>(
-  response: BackendPaginationResponse<T>,
+  response: BackendPaginationRawResponse<T>,
 ): PaginatedResponse<T> {
   const { current_page: currentPage, total, data } = response;
   const links: PaginationLink[] = [];

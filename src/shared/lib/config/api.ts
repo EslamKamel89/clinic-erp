@@ -3,4 +3,5 @@ export const API_ENDPOINTS = {
   login: "/api/userlogin",
   me: "/api/me",
   changeLanguage: "/api/changeuserlang",
+  countryIndex: "/api/countries",
 };
