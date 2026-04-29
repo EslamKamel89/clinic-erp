@@ -9,9 +9,10 @@ import type { Column } from "../../../../shared/components/table/types";
 
 export const CountryIndexPage = () => {
   const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const { items, currentPage, isError, total, isLoading } = useCountries({
     page,
-    limit: 5,
+    limit,
   });
 
   const columns: Column<Country>[] = [
@@ -94,6 +95,11 @@ export const CountryIndexPage = () => {
               currentPage={currentPage ?? 1}
               total={total ?? 1}
               onPageChange={setPage}
+              limit={limit}
+              onLimitChange={(newLimit) => {
+                setLimit(newLimit);
+                setPage(1);
+              }}
             />
           )}
         </>
