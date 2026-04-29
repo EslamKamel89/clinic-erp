@@ -41,21 +41,24 @@ export function DataTable<T>({
                   </td>
                 </tr>
               ) : (
-                data.map((row) => (
-                  <tr
-                    key={getRowId(row)}
-                    className="border-b last:border-0 hover:bg-muted/40 transition-colors"
-                  >
-                    {columns.map((col) => (
-                      <td
-                        key={`${getRowId(row)}-${col.id}`}
-                        className="px-4 py-3 align-middle"
-                      >
-                        {renderCell(col, row)}
-                      </td>
-                    ))}
-                  </tr>
-                ))
+                data.map((row) => {
+                  const rawId = getRowId(row);
+                  return (
+                    <tr
+                      key={rawId}
+                      className="border-b last:border-0 hover:bg-muted/40 transition-colors"
+                    >
+                      {columns.map((col) => (
+                        <td
+                          key={`${rawId}-${col.id}`}
+                          className="px-4 py-3 align-middle"
+                        >
+                          {renderCell(col, row)}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })
               )}
             </tbody>
           </table>

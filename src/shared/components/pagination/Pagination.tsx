@@ -51,11 +51,12 @@ export const Pagination = ({
         }
 
         const page = item;
-
+        if (page < 1 || page > total) return <></>;
         return (
           <Button
             key={`Pagination.${page}`}
             variant={page === currentPage ? "default" : "ghost"}
+            disabled={currentPage === total}
             size="sm"
             onClick={() => {
               if (page !== currentPage) {

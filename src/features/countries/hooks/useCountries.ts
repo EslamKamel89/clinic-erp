@@ -13,14 +13,14 @@ type Params = {
 };
 
 export const useCountries = ({ page, limit }: Params) => {
-  const { data, isLoading, isError } = useQuery<
-    PaginatedResponse<Country>,
-    AppError
-  >({
+  const {
+    data: pagination,
+    isLoading,
+    isError,
+  } = useQuery<PaginatedResponse<Country>, AppError>({
     queryKey: queryClientKeys.countries.index(page, limit),
     queryFn: async () => {
       const response = await countryIndexApi(page, limit);
-      // response.total = 5;
       const data = serializeCountryIndexResponse(response.data);
 
       const pagination = transformPagination<Country>({ ...response, data });
@@ -29,7 +29,9 @@ export const useCountries = ({ page, limit }: Params) => {
     staleTime: Infinity,
   });
   return {
-    data,
+    items: pagination?.data,
+    currentPage: pagination?.currentPage,
+    total: pagination?.total,
     isLoading,
     isError,
   };

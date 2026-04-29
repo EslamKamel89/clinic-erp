@@ -9,7 +9,10 @@ import type { Column } from "../../../../shared/components/table/types";
 
 export const CountryIndexPage = () => {
   const [page, setPage] = useState(1);
-  const { data, isLoading } = useCountries({ page, limit: 10 });
+  const { items, currentPage, isError, total, isLoading } = useCountries({
+    page,
+    limit: 5,
+  });
 
   const columns: Column<Country>[] = [
     {
@@ -81,15 +84,15 @@ export const CountryIndexPage = () => {
       ) : (
         <>
           <DataTable
-            data={data?.data ?? []}
+            data={items ?? []}
             columns={columns}
             getRowId={(row) => row.id}
             emptyMessage="No countries found"
           />
-          {data && (
+          {items && (
             <Pagination
-              currentPage={data.currentPage}
-              total={data.total}
+              currentPage={currentPage ?? 1}
+              total={total ?? 1}
               onPageChange={setPage}
             />
           )}
