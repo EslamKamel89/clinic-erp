@@ -20,7 +20,9 @@ export const useCountries = ({ page, limit }: Params) => {
     queryKey: queryClientKeys.countries.index(page, limit),
     queryFn: async () => {
       const response = await countryIndexApi(page, limit);
+      // response.total = 5;
       const data = serializeCountryIndexResponse(response.data);
+
       const pagination = transformPagination<Country>({ ...response, data });
       return pagination;
     },

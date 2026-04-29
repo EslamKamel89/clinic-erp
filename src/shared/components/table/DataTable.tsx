@@ -71,7 +71,11 @@ export function DataTable<T>({
           ) : (
             data.map((row) => {
               const rowId = getRowId(row);
-              return <div key={rowId}>{RenderCard(columns, row)}</div>;
+              return (
+                <div key={rowId}>
+                  <RenderCard key={rowId} columns={columns} row={row} />
+                </div>
+              );
             })
           )}
         </div>
@@ -80,16 +84,23 @@ export function DataTable<T>({
   );
 }
 
-function RenderCard<T>(columns: Column<T>[], row: T): ReactNode {
+type RenderCardProps<T> = {
+  columns: Column<T>[];
+  row: T;
+};
+
+function RenderCard<T>({ columns, row }: RenderCardProps<T>) {
   const [open, setOpen] = useState(false);
+
   const titleColumn = columns.find((c) => c.mobile?.title) ?? columns[0];
+
   const visibleColumns = columns.filter(
     (col) => !col.mobile?.hidden && !col.mobile?.title,
   );
 
   return (
     <div className="rounded-xl border bg-card shadow-sm overflow-hidden">
-      {/* Header (clickable) */}
+      {/* Header */}
       <div
         className="px-4 py-3 border-b bg-muted/40 flex items-center justify-between cursor-pointer"
         onClick={() => setOpen((p) => !p)}
@@ -103,7 +114,7 @@ function RenderCard<T>(columns: Column<T>[], row: T): ReactNode {
         />
       </div>
 
-      {/* Collapsible Content */}
+      {/* Content */}
       {open && (
         <div className="px-4 py-3 divide-y">
           {visibleColumns.map((col) => (
@@ -111,9 +122,7 @@ function RenderCard<T>(columns: Column<T>[], row: T): ReactNode {
               key={col.id}
               className="flex items-start justify-between gap-4 py-2"
             >
-              <span className="text-xs text-muted-foreground leading-none">
-                {col.label}
-              </span>
+              <span className="text-xs text-muted-foreground">{col.label}</span>
 
               <div className="text-sm text-right font-medium break-words max-w-[60%]">
                 {renderCell(col, row)}
@@ -125,6 +134,7 @@ function RenderCard<T>(columns: Column<T>[], row: T): ReactNode {
     </div>
   );
 }
+
 function renderCell<T>(col: Column<T>, row: T): ReactNode {
   const value = col.accessor(row);
 

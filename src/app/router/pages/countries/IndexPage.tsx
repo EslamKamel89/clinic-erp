@@ -1,12 +1,15 @@
 import { Pencil, Trash2 } from "lucide-react";
+import { useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { useCountries } from "../../../../features/countries/hooks/useCountries";
 import type { Country } from "../../../../features/countries/types/country.types";
+import { Pagination } from "../../../../shared/components/pagination/Pagination";
 import { DataTable } from "../../../../shared/components/table/DataTable";
 import type { Column } from "../../../../shared/components/table/types";
 
 export const CountryIndexPage = () => {
-  const { data, isLoading } = useCountries({ page: 1, limit: 10 });
+  const [page, setPage] = useState(1);
+  const { data, isLoading } = useCountries({ page, limit: 10 });
 
   const columns: Column<Country>[] = [
     {
@@ -76,12 +79,21 @@ export const CountryIndexPage = () => {
           </div>
         </div>
       ) : (
-        <DataTable
-          data={data?.data ?? []}
-          columns={columns}
-          getRowId={(row) => row.id}
-          emptyMessage="No countries found"
-        />
+        <>
+          <DataTable
+            data={data?.data ?? []}
+            columns={columns}
+            getRowId={(row) => row.id}
+            emptyMessage="No countries found"
+          />
+          {data && (
+            <Pagination
+              currentPage={data.currentPage}
+              total={data.total}
+              onPageChange={setPage}
+            />
+          )}
+        </>
       )}
     </div>
   );
