@@ -24,6 +24,7 @@ export const useCountries = ({ page, limit }: Params) => {
       const pagination = transformPagination<Country>({ ...response, data });
       return pagination;
     },
+    staleTime: Infinity,
   });
   return {
     data,
