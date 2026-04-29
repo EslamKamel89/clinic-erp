@@ -16,4 +16,5 @@ export type DataTableProps<T> = {
   data: T[];
   columns: Column<T>[];
   getRowId: (row: T) => string | number;
+  emptyMessage?: string;
 };
