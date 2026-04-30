@@ -13,7 +13,7 @@ export const useDeleteCountry = () => {
   return useMutation<ApiResponse<null>, AppError, number>({
     mutationFn: (id: number) => deleteCountryApi(id),
     onSuccess: (data) => {
-      showSuccessToast("Country updated", {
+      showSuccessToast("Country deleted", {
         description: data.Message,
       });
       queryClient.invalidateQueries({
@@ -21,7 +21,7 @@ export const useDeleteCountry = () => {
       });
     },
     onError: (error: AppError) => {
-      showErrorToast("Failed to create country", {
+      showErrorToast("Failed to delete country", {
         description: error.message,
       });
     },

@@ -34,7 +34,7 @@ export const useUpdateCountry = () => {
       });
     },
     onError: (error: AppError) => {
-      showErrorToast("Failed to create country", {
+      showErrorToast("Failed to update country", {
         description: error.message,
       });
     },
