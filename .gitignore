@@ -33,5 +33,7 @@ app.txt
 features__auth.txt
 features__localization.txt
 features__navigation.txt
+features__countries.txt
 shared.txt
 tracked_files.txt
+summarize_script.txt
