@@ -1,10 +1,12 @@
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Separator } from "../../../../components/ui/separator";
 import { CountryCreateSheet } from "../../../../features/countries/components/CountryCreateSheet";
 import { CountryUpdateSheet } from "../../../../features/countries/components/CountryUpdateSheet";
+import { DeleteButton } from "../../../../features/countries/components/DeleteButton";
 import { useCountries } from "../../../../features/countries/hooks/useCountries";
+import { useDeleteCountry } from "../../../../features/countries/hooks/useDeleteCountry";
 import type { Country } from "../../../../features/countries/types/country.types";
 import { Pagination } from "../../../../shared/components/pagination/Pagination";
 import { DataTable } from "../../../../shared/components/table/DataTable";
@@ -16,7 +18,7 @@ export const CountryIndexPage = () => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
-
+  const deleteMutation = useDeleteCountry();
   const { items, currentPage, isError, total, isLoading } = useCountries({
     page,
     limit,
@@ -56,15 +58,20 @@ export const CountryIndexPage = () => {
           >
             <Pencil className="size-4" />
           </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-destructive hover:text-destructive"
-            onClick={() => console.log("Delete:", row)}
-          >
-            <Trash2 className="size-4" />
-          </Button>
+          <DeleteButton
+            country={row}
+            isLoading={deleteMutation.isPending}
+            onDelete={() =>
+              deleteMutation.mutate(row.id, {
+                onSuccess: () => {
+                  const isLastItemOnPage = items?.length === 1;
+                  if (isLastItemOnPage && page > 1) {
+                    setPage((prev) => prev - 1);
+                  }
+                },
+              })
+            }
+          />
         </div>
       ),
     },
@@ -132,7 +139,10 @@ export const CountryIndexPage = () => {
 
       <CountryUpdateSheet
         country={selectedCountry}
-        onOpenChange={(open) => setIsUpdateOpen(open)}
+        onOpenChange={(open) => {
+          setIsUpdateOpen(open);
+          if (!open) setSelectedCountry(null);
+        }}
         open={isUpdateOpen}
       />
     </div>
