@@ -1,6 +1,9 @@
 import { Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../../../../components/ui/button";
+import { Separator } from "../../../../components/ui/separator";
+import { CountryCreateSheet } from "../../../../features/countries/components/CountryCreateSheet";
+import { CountryUpdateSheet } from "../../../../features/countries/components/CountryUpdateSheet";
 import { useCountries } from "../../../../features/countries/hooks/useCountries";
 import type { Country } from "../../../../features/countries/types/country.types";
 import { Pagination } from "../../../../shared/components/pagination/Pagination";
@@ -10,6 +13,10 @@ import type { Column } from "../../../../shared/components/table/types";
 export const CountryIndexPage = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isUpdateOpen, setIsUpdateOpen] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+
   const { items, currentPage, isError, total, isLoading } = useCountries({
     page,
     limit,
@@ -42,7 +49,10 @@ export const CountryIndexPage = () => {
             variant="ghost"
             size="icon"
             className="text-muted-foreground hover:text-foreground"
-            onClick={() => console.log("Edit:", row)}
+            onClick={() => {
+              setSelectedCountry(row);
+              setIsUpdateOpen(true);
+            }}
           >
             <Pencil className="size-4" />
           </Button>
@@ -63,18 +73,22 @@ export const CountryIndexPage = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1">
           <h1 className="text-xl font-semibold tracking-tight">Countries</h1>
           <p className="text-sm text-muted-foreground">
             Manage and view available countries
           </p>
         </div>
+
+        <Button onClick={() => setIsCreateOpen(true)}>Add Country</Button>
       </div>
+
+      <Separator />
 
       {/* Content */}
       {isLoading ? (
-        <div className="flex items-center justify-center py-12">
+        <div className="flex items-center justify-center py-16">
           <div className="flex flex-col items-center gap-3">
             <div className="size-6 animate-spin rounded-full border-2 border-muted border-t-primary" />
             <p className="text-sm text-muted-foreground">
@@ -83,27 +97,44 @@ export const CountryIndexPage = () => {
           </div>
         </div>
       ) : (
-        <>
+        <div className="space-y-4">
+          {/* Table */}
           <DataTable
             data={items ?? []}
             columns={columns}
             getRowId={(row) => row.id}
             emptyMessage="No countries found"
           />
+
+          {/* Pagination */}
           {items && (
-            <Pagination
-              currentPage={currentPage ?? 1}
-              total={total ?? 1}
-              onPageChange={setPage}
-              limit={limit}
-              onLimitChange={(newLimit) => {
-                setLimit(newLimit);
-                setPage(1);
-              }}
-            />
+            <div className="flex items-center justify-center pt-2">
+              <Pagination
+                currentPage={currentPage ?? 1}
+                total={total ?? 1}
+                onPageChange={setPage}
+                limit={limit}
+                onLimitChange={(newLimit) => {
+                  setLimit(newLimit);
+                  setPage(1);
+                }}
+              />
+            </div>
           )}
-        </>
+        </div>
       )}
+
+      {/* Sheets */}
+      <CountryCreateSheet
+        onOpenChange={(open) => setIsCreateOpen(open)}
+        open={isCreateOpen}
+      />
+
+      <CountryUpdateSheet
+        country={selectedCountry}
+        onOpenChange={(open) => setIsUpdateOpen(open)}
+        open={isUpdateOpen}
+      />
     </div>
   );
 };
