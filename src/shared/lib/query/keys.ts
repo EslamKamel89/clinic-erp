@@ -5,6 +5,7 @@ export const queryClientKeys = {
     session: ["auth", "session"],
   },
   countries: {
+    main: ["countries"],
     index(page: number, limit: number) {
       return ["countries", page, limit];
     },
