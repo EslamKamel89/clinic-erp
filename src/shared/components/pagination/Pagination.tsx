@@ -90,14 +90,14 @@ export const Pagination = ({
             <Button
               key={`Pagination.${page}`}
               variant={page === currentPage ? "default" : "ghost"}
-              disabled={currentPage === total}
+              disabled={currentPage === page}
               size="sm"
               onClick={() => {
                 if (page !== currentPage) {
                   onPageChange(page);
                 }
               }}
-              className="min-w-9 px-3"
+              className="min-w-9 px-3 cursor-pointer"
             >
               {page}
             </Button>

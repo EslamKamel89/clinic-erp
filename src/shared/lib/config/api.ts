@@ -4,4 +4,7 @@ export const API_ENDPOINTS = {
   me: "/api/me",
   changeLanguage: "/api/changeuserlang",
   countryIndex: "/api/countries",
+  countryCreate: "/api/countries",
+  countryUpdate: (id: number) => `/api/countries/${id}`,
+  countryDelete: (id: number) => `/api/countries/${id}`,
 };
