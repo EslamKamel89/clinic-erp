@@ -23,8 +23,15 @@ export const useAuthSession = () => {
   });
   useEffect(() => {
     if (!query.isSuccess) return;
+    if (query.data.token !== token) {
+      setToken(query.data.token);
+    }
     queryClient.setQueryData(queryClientKeys.auth.user, query.data.user);
     queryClient.setQueryData(queryClientKeys.auth.menu, query.data.menu);
+    queryClient.setQueryData(
+      queryClientKeys.auth.permissions,
+      query.data.permissions,
+    );
     if (i18n.language !== query.data.language) {
       i18n.changeLanguage(query.data.language);
     }
@@ -34,6 +41,9 @@ export const useAuthSession = () => {
     query.data?.menu,
     query.data?.user,
     query.data?.language,
+    query.data?.permissions,
+    query.data?.token,
+    setToken,
   ]);
   useEffect(() => {
     if (query.isError) {

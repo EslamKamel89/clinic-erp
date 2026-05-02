@@ -1,8 +1,10 @@
 export const queryClientKeys = {
   auth: {
+    main: ["auth"],
     user: ["auth", "user"],
     menu: ["auth", "menu"],
     session: ["auth", "session"],
+    permissions: ["auth", "permissions"],
   },
   countries: {
     main: ["countries"],

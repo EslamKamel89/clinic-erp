@@ -26,6 +26,10 @@ export function useLogin() {
       }
       queryClient.setQueryData(queryClientKeys.auth.user, data.user);
       queryClient.setQueryData(queryClientKeys.auth.menu, data.menu);
+      queryClient.setQueryData(
+        queryClientKeys.auth.permissions,
+        data.permissions,
+      );
     },
     onError: (error) => {
       console.error(error);
