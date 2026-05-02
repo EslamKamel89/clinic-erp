@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../../../components/ui/button";
@@ -5,11 +6,11 @@ import { Separator } from "../../../components/ui/separator";
 import { Pagination } from "../../../shared/components/pagination/Pagination";
 import { DataTable } from "../../../shared/components/table/DataTable";
 import type { Column } from "../../../shared/components/table/types";
+import { queryClientKeys } from "../../../shared/lib/query/keys";
 import { CountryCreateSheet } from "../components/CountryCreateSheet";
 import { CountryUpdateSheet } from "../components/CountryUpdateSheet";
 import { DeleteButton } from "../components/DeleteButton";
 import { useCountries } from "../hooks/useCountries";
-import { useDeleteCountry } from "../hooks/useDeleteCountry";
 import type { Country } from "../types/country.types";
 
 export const CountryIndexPage = () => {
@@ -17,8 +18,8 @@ export const CountryIndexPage = () => {
   const [limit, setLimit] = useState(10);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
+  const queryClient = useQueryClient();
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
-  const deleteMutation = useDeleteCountry();
   const { items, currentPage, isError, total, isLoading } = useCountries({
     page,
     limit,
@@ -60,17 +61,12 @@ export const CountryIndexPage = () => {
           </Button>
           <DeleteButton
             country={row}
-            isLoading={deleteMutation.isPending}
-            onDelete={() =>
-              deleteMutation.mutate(row.id, {
-                onSuccess: () => {
-                  const isLastItemOnPage = items?.length === 1;
-                  if (isLastItemOnPage && page > 1) {
-                    setPage((prev) => prev - 1);
-                  }
-                },
-              })
-            }
+            onDelete={() => {
+              const isLastItemOnPage = items?.length === 1;
+              if (isLastItemOnPage && page > 1) {
+                setPage((prev) => prev - 1);
+              }
+            }}
           />
         </div>
       ),
@@ -93,8 +89,8 @@ export const CountryIndexPage = () => {
 
       <Separator />
 
-      {/* Content */}
-      {isLoading ? (
+      {/* Loading State */}
+      {isLoading && (
         <div className="flex items-center justify-center py-16">
           <div className="flex flex-col items-center gap-3">
             <div className="size-6 animate-spin rounded-full border-2 border-muted border-t-primary" />
@@ -103,7 +99,30 @@ export const CountryIndexPage = () => {
             </p>
           </div>
         </div>
-      ) : (
+      )}
+
+      {/* Error State */}
+      {isError && !isLoading && (
+        <div className="flex items-center justify-center py-16">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <p className="text-sm text-destructive">Failed to load countries</p>
+            <Button
+              variant="outline"
+              onClick={async () => {
+                await queryClient.invalidateQueries({
+                  queryKey: queryClientKeys.countries.main,
+                });
+                setPage(1);
+              }}
+            >
+              Retry
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Success State */}
+      {!isLoading && !isError && (
         <div className="space-y-4">
           {/* Table */}
           <DataTable

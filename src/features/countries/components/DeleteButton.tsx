@@ -11,14 +11,16 @@ import {
   AlertDialogTrigger,
 } from "../../../components/ui/alert-dialog";
 import { Button } from "../../../components/ui/button";
+import { useDeleteCountry } from "../hooks/useDeleteCountry";
 import type { Country } from "../types/country.types";
 
 type Props = {
   country: Country;
   onDelete: () => void;
-  isLoading: boolean;
 };
-export const DeleteButton = ({ country, onDelete, isLoading }: Props) => {
+export const DeleteButton = ({ country, onDelete }: Props) => {
+  const { isPending, mutate } = useDeleteCountry();
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -45,10 +47,16 @@ export const DeleteButton = ({ country, onDelete, isLoading }: Props) => {
           <AlertDialogAction
             variant=""
             size=""
-            disabled={isLoading}
-            onClick={() => onDelete()}
+            disabled={isPending}
+            onClick={() => {
+              mutate(country.id, {
+                onSuccess: () => {
+                  onDelete();
+                },
+              });
+            }}
           >
-            {isLoading ? "Deleting..." : "Delete"}
+            {isPending ? "Deleting..." : "Delete"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
