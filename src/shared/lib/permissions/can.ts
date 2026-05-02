@@ -4,7 +4,7 @@ import type {
 } from "../../../features/auth/types/auth.types";
 
 export function can(
-  permissions: Permissions | undefined,
+  permissions: Permissions | undefined | null,
   resource: keyof Permissions,
   action: Action,
 ) {

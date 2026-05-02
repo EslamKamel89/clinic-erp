@@ -6,6 +6,7 @@ import { Separator } from "../../../components/ui/separator";
 import { Pagination } from "../../../shared/components/pagination/Pagination";
 import { DataTable } from "../../../shared/components/table/DataTable";
 import type { Column } from "../../../shared/components/table/types";
+import { usePermissions } from "../../../shared/lib/permissions/usePermissions";
 import { queryClientKeys } from "../../../shared/lib/query/keys";
 import { CountryCreateSheet } from "../components/CountryCreateSheet";
 import { CountryUpdateSheet } from "../components/CountryUpdateSheet";
@@ -24,7 +25,10 @@ export const CountryIndexPage = () => {
     page,
     limit,
   });
-
+  const { can } = usePermissions();
+  const canCreate = can("countries", "create");
+  const canUpdate = can("countries", "update");
+  const canDelete = can("countries", "delete");
   const columns: Column<Country>[] = [
     {
       id: "name",
@@ -48,26 +52,30 @@ export const CountryIndexPage = () => {
       accessor: () => null,
       render: (_, row) => (
         <div className="flex items-center justify-end gap-1">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-muted-foreground hover:text-foreground"
-            onClick={() => {
-              setSelectedCountry(row);
-              setIsUpdateOpen(true);
-            }}
-          >
-            <Pencil className="size-4" />
-          </Button>
-          <DeleteButton
-            country={row}
-            onDelete={() => {
-              const isLastItemOnPage = items?.length === 1;
-              if (isLastItemOnPage && page > 1) {
-                setPage((prev) => prev - 1);
-              }
-            }}
-          />
+          {canUpdate && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => {
+                setSelectedCountry(row);
+                setIsUpdateOpen(true);
+              }}
+            >
+              <Pencil className="size-4" />
+            </Button>
+          )}
+          {canDelete && (
+            <DeleteButton
+              country={row}
+              onDelete={() => {
+                const isLastItemOnPage = items?.length === 1;
+                if (isLastItemOnPage && page > 1) {
+                  setPage((prev) => prev - 1);
+                }
+              }}
+            />
+          )}
         </div>
       ),
     },
@@ -83,8 +91,9 @@ export const CountryIndexPage = () => {
             Manage and view available countries
           </p>
         </div>
-
-        <Button onClick={() => setIsCreateOpen(true)}>Add Country</Button>
+        {canCreate && (
+          <Button onClick={() => setIsCreateOpen(true)}>Add Country</Button>
+        )}
       </div>
 
       <Separator />
