@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
+import { LoginPage } from "../../features/auth/pages/LoginPage";
+import { CountryIndexPage } from "../../features/countries/pages/IndexPage";
 import RequireAuth from "./guards/RequireAuth";
 import { AppLayout } from "./layouts/AppLayout";
 import { PublicLayout } from "./layouts/PublicLayout";
 import { RootLayout } from "./layouts/RootLayout";
-import { LoginPage } from "./pages/auth/LoginPage";
-import { CountryIndexPage } from "./pages/countries/IndexPage";
 
 export const router = createBrowserRouter([
   {

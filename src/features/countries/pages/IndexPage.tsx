@@ -1,16 +1,16 @@
 import { Pencil } from "lucide-react";
 import { useState } from "react";
-import { Button } from "../../../../components/ui/button";
-import { Separator } from "../../../../components/ui/separator";
-import { CountryCreateSheet } from "../../../../features/countries/components/CountryCreateSheet";
-import { CountryUpdateSheet } from "../../../../features/countries/components/CountryUpdateSheet";
-import { DeleteButton } from "../../../../features/countries/components/DeleteButton";
-import { useCountries } from "../../../../features/countries/hooks/useCountries";
-import { useDeleteCountry } from "../../../../features/countries/hooks/useDeleteCountry";
-import type { Country } from "../../../../features/countries/types/country.types";
-import { Pagination } from "../../../../shared/components/pagination/Pagination";
-import { DataTable } from "../../../../shared/components/table/DataTable";
-import type { Column } from "../../../../shared/components/table/types";
+import { Button } from "../../../components/ui/button";
+import { Separator } from "../../../components/ui/separator";
+import { Pagination } from "../../../shared/components/pagination/Pagination";
+import { DataTable } from "../../../shared/components/table/DataTable";
+import type { Column } from "../../../shared/components/table/types";
+import { CountryCreateSheet } from "../components/CountryCreateSheet";
+import { CountryUpdateSheet } from "../components/CountryUpdateSheet";
+import { DeleteButton } from "../components/DeleteButton";
+import { useCountries } from "../hooks/useCountries";
+import { useDeleteCountry } from "../hooks/useDeleteCountry";
+import type { Country } from "../types/country.types";
 
 export const CountryIndexPage = () => {
   const [page, setPage] = useState(1);
