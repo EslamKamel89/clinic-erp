@@ -20,12 +20,22 @@ export function serializeLoginResponse(raw: LoginResponseRaw): AuthModel {
   const language = mapLanguage(data.lang);
   const direction = getDirection(language);
   const menu = normalizeMenu(raw.menu);
+
+  const rawPermissions = raw.Permission ?? {};
+  const permissions = {
+    userAccounts: rawPermissions["User Accounts"] ?? [],
+    languages: rawPermissions.Languages ?? [],
+    countries: rawPermissions.Counties ?? [],
+    states: rawPermissions.States ?? [],
+    cities: rawPermissions.Cities ?? [],
+  };
   return {
     user,
     token,
     menu,
     language,
     direction,
+    permissions,
   };
 }
 

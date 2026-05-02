@@ -1,66 +1,3 @@
-/* api response example
-{
-    "Result": true,
-    "Message": "",
-    "Data": {
-        "User_Name": "s",
-        "Emp_Name": "sys",
-        "Branch_Name": "فرع _1",
-        "Company_Name": "شركة_1",
-        "Authorization": "y3eeQNDtudY2AVNiAvLzyw",
-        "lang": "ar",
-        "Lang_Dir": "rtl",
-        "MenuStyle": "Horizontal",
-        "Time_Zone": 2,
-        "User_ID": 0,
-        "Emp_ID": 0,
-        "Branch_ID": 1,
-        "Company_ID": 1,
-        "Option_ID": 1,
-        "MenuStyle_ID": 2
-    },
-    "menu": [
-        {
-            "menu_name": "ملف",
-            "pages_count": "1",
-            "icon": "Icon",
-            "children": [
-                {
-                    "menu_name": "حسابات المستخدمين",
-                    "pages_count": "0",
-                    "pagelink": "UserAccounts/UserAccounts",
-                    "icon": "Icon"
-                }
-            ]
-        },
-        {
-            "menu_name": "ملف2",
-            "pages_count": "1",
-            "icon": "Icon",
-            "children": [
-                {
-                    "menu_name": "Menu4",
-                    "pages_count": "2",
-                    "icon": "Icon",
-                    "children": [
-                        {
-                            "menu_name": "Page",
-                            "pages_count": "0",
-                            "pagelink": "UserAccounts/UserAccounts",
-                            "icon": "Icon"
-                        },
-                        {
-                            "menu_name": "Test",
-                            "pages_count": "0",
-                            "pagelink": "UserAccounts/UserAccounts",
-                            "icon": "Icon"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}
 /*
 mapping from api to model
 | Backend      | Frontend    |
@@ -95,6 +32,7 @@ export type AuthModel = {
   menu: MenuItem[];
   language: Language;
   direction: "rtl" | "ltr";
+  permissions: Permissions;
 };
 
 export type LoginResponseRaw = {
@@ -118,6 +56,13 @@ export type LoginResponseRaw = {
     MenuStyle_ID: number;
   };
   menu: RawMenuItem[];
+  Permission: {
+    "User Accounts": Action[];
+    Languages: Action[];
+    Counties: Action[];
+    States: Action[];
+    Cities: Action[];
+  };
 };
 
 export type RawMenuItem = {
@@ -125,4 +70,14 @@ export type RawMenuItem = {
   icon?: string;
   pagelink?: string;
   children?: RawMenuItem[];
+};
+
+export type Action = "create" | "update" | "delete" | "show";
+
+export type Permissions = {
+  userAccounts: Action[];
+  languages: Action[];
+  countries: Action[];
+  states: Action[];
+  cities: Action[];
 };
