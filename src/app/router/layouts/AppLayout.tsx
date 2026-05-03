@@ -8,6 +8,7 @@ import { ActionMenu } from "../../../features/navigation/components/ActionMenu";
 import { DesktopMenu } from "../../../features/navigation/components/DesktopMenu";
 import { MobileMenu } from "../../../features/navigation/components/MobileMenu";
 import { useLocalization } from "../../../shared/lib/localization/useLocalization";
+import { usePermissions } from "../../../shared/lib/permissions/usePermissions";
 
 export const AppLayout = () => {
   const { logout } = useLogout();
@@ -15,10 +16,9 @@ export const AppLayout = () => {
   const menus = useUserMenu();
   const token = useAuthStore((s) => s.token);
   const session = useAuthSession();
-
+  const { permissions } = usePermissions();
   const isHydrating = !!token && session.isLoading;
-
-  if (isHydrating) {
+  if (isHydrating || !permissions) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4">
