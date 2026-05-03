@@ -4,7 +4,7 @@ import i18n from "../../../shared/lib/localization/i18n";
 import { queryClientKeys } from "../../../shared/lib/query/keys";
 import { useAuthStore } from "../../auth/store/auth.store";
 import type { Language } from "../../auth/types/auth.types";
-import { changeLanguageApi } from "../api/changeLanguageApi";
+import { changeLanguageApi } from "../api/changeLanguage.api";
 
 export const useChangeLanguage = () => {
   const token = useAuthStore((s) => s.token);
