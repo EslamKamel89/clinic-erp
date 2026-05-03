@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { AppError } from "../../../shared/lib/api/error";
 import type { ApiResponse } from "../../../shared/lib/api/types";
+import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { queryClientKeys } from "../../../shared/lib/query/keys";
 import {
   showErrorToast,
@@ -10,10 +11,12 @@ import { deleteCountryApi } from "../api/countryDelete.api";
 
 export const useDeleteCountry = () => {
   const queryClient = useQueryClient();
+  const { t } = useLocalization("p002");
+
   return useMutation<ApiResponse<null>, AppError, number>({
     mutationFn: (id: number) => deleteCountryApi(id),
     onSuccess: (data) => {
-      showSuccessToast("Country deleted", {
+      showSuccessToast(t("deleted"), {
         description: data.Message,
       });
       queryClient.invalidateQueries({
@@ -21,7 +24,7 @@ export const useDeleteCountry = () => {
       });
     },
     onError: (error: AppError) => {
-      showErrorToast("Failed to delete country", {
+      showErrorToast(t("delete_failed"), {
         description: error.message,
       });
     },

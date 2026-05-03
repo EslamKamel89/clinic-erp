@@ -21,7 +21,7 @@ export function DataTable<T>({
                   <th
                     key={col.id}
                     scope="col"
-                    className="px-4 py-3 text-left font-medium text-muted-foreground"
+                    className="px-4 py-3 text-start font-medium text-muted-foreground"
                   >
                     {col.label}
                   </th>

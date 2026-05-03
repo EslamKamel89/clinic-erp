@@ -6,6 +6,7 @@ import { Separator } from "../../../components/ui/separator";
 import { Pagination } from "../../../shared/components/pagination/Pagination";
 import { DataTable } from "../../../shared/components/table/DataTable";
 import type { Column } from "../../../shared/components/table/types";
+import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { usePermissions } from "../../../shared/lib/permissions/usePermissions";
 import { queryClientKeys } from "../../../shared/lib/query/keys";
 import { CountryCreateSheet } from "../components/CountryCreateSheet";
@@ -26,24 +27,25 @@ export const CountryIndexPage = () => {
     limit,
   });
   const { can } = usePermissions();
+  const { t } = useLocalization("p002");
   const canCreate = can("countries", "create");
   const canUpdate = can("countries", "update");
   const canDelete = can("countries", "delete");
   const columns: Column<Country>[] = [
     {
       id: "name",
-      label: "Name",
+      label: t("name"),
       accessor: (row) => row.name,
       mobile: { title: true },
     },
     {
       id: "phoneCode",
-      label: "Phone Code",
+      label: t("phone_code"),
       accessor: (row) => row.phoneCode,
     },
     {
       id: "notes",
-      label: "Notes",
+      label: t("notes"),
       accessor: (row) => row.notes,
     },
     {
@@ -86,13 +88,11 @@ export const CountryIndexPage = () => {
       {/* Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1">
-          <h1 className="text-xl font-semibold tracking-tight">Countries</h1>
-          <p className="text-sm text-muted-foreground">
-            Manage and view available countries
-          </p>
+          <h1 className="text-xl font-semibold tracking-tight">{t("title")}</h1>
+          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
         {canCreate && (
-          <Button onClick={() => setIsCreateOpen(true)}>Add Country</Button>
+          <Button onClick={() => setIsCreateOpen(true)}>{t("add")}</Button>
         )}
       </div>
 
@@ -103,9 +103,7 @@ export const CountryIndexPage = () => {
         <div className="flex items-center justify-center py-16">
           <div className="flex flex-col items-center gap-3">
             <div className="size-6 animate-spin rounded-full border-2 border-muted border-t-primary" />
-            <p className="text-sm text-muted-foreground">
-              Loading countries...
-            </p>
+            <p className="text-sm text-muted-foreground">{t("loading")}</p>
           </div>
         </div>
       )}
@@ -114,7 +112,7 @@ export const CountryIndexPage = () => {
       {isError && !isLoading && (
         <div className="flex items-center justify-center py-16">
           <div className="flex flex-col items-center gap-3 text-center">
-            <p className="text-sm text-destructive">Failed to load countries</p>
+            <p className="text-sm text-destructive">{t("error")}</p>
             <Button
               variant="outline"
               onClick={async () => {
@@ -124,7 +122,7 @@ export const CountryIndexPage = () => {
                 setPage(1);
               }}
             >
-              Retry
+              {t("retry")}
             </Button>
           </div>
         </div>
@@ -138,7 +136,7 @@ export const CountryIndexPage = () => {
             data={items ?? []}
             columns={columns}
             getRowId={(row) => row.id}
-            emptyMessage="No countries found"
+            emptyMessage={t("empty")}
           />
 
           {/* Pagination */}
