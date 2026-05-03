@@ -45,9 +45,17 @@ function dummyBackendResponse(
   };
   const namespaceData =
     localizationData[namespace as keyof typeof localizationData];
-  if (!namespaceData) return [];
+  if (!namespaceData) {
+    console.warn(`[i18n] Missing namespace in dummy: ${namespace}`);
+    return [];
+  }
   const langData = namespaceData[language as keyof typeof namespaceData];
-  if (!langData) return [];
+  if (!langData) {
+    console.warn(
+      `[i18n] Missing language "${language}" in namespace "${namespace}"`,
+    );
+    return [];
+  }
   return langData;
 }
 

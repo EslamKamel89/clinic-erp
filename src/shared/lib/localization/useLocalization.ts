@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNamespace } from "./hooks/useNamespace";
-type Namespace = "p000" | "p001" | "validation";
+type Namespace = "p000" | "p001" | "validation" | "p002";
 
 export function useLocalization(pageId: Namespace) {
   const { t: originalT, i18n } = useTranslation(pageId, { useSuspense: false });
@@ -25,8 +25,13 @@ export function useLocalization(pageId: Namespace) {
   }
   useEffect(() => {
     if (!shouldFetch || !data) return;
-
-    i18n.addResourceBundle(language, pageId, { ...data }, true, true);
+    const alreadyLoaded = i18n.hasResourceBundle(language, pageId);
+    if (alreadyLoaded) return;
+    if (Object.keys(data).length === 0) {
+      console.warn(`[i18n] Empty namespace loaded: ${pageId}`);
+      return;
+    }
+    i18n.addResourceBundle(language, pageId, data, true, true);
   }, [data, language, pageId, shouldFetch]);
   return {
     t,

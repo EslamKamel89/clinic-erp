@@ -13,7 +13,7 @@ export function useNamespace(
     queryKey: queryClientKeys.localization.namespace(language, namespace),
     queryFn: () => getNamespaceApi(namespace, language),
     staleTime: Infinity,
-    enabled: options?.enabled,
+    enabled: options?.enabled ?? true,
   });
   return {
     data: query.data,
