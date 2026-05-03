@@ -11,7 +11,7 @@ export function useNamespace(
   const language = i18n.language;
   const query = useQuery({
     queryKey: queryClientKeys.localization.namespace(language, namespace),
-    queryFn: () => getNamespaceApi(namespace, language),
+    queryFn: async () => await getNamespaceApi(namespace, language),
     staleTime: Infinity,
     enabled: options?.enabled ?? true,
   });

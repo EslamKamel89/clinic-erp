@@ -1,4 +1,5 @@
 {
     "username_required": "اسم المستخدم مطلوب",
-    "password_required": "كلمة المرور مطلوبة"
+    "password_required": "كلمة المرور مطلوبة",
+    "name_required": "الاسم مطلوب"
 }
