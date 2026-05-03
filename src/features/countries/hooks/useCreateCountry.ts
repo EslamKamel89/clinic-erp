@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { AppError } from "../../../shared/lib/api/error";
 import type { ApiResponse } from "../../../shared/lib/api/types";
+import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { queryClientKeys } from "../../../shared/lib/query/keys";
 import {
   showErrorToast,
@@ -13,10 +14,12 @@ type CreateCountryPayload = Omit<CountryRaw, "ID">;
 
 export const useCreateCountry = () => {
   const queryClient = useQueryClient();
+  const { t } = useLocalization("p002");
+
   return useMutation<ApiResponse<CountryRaw>, AppError, CreateCountryPayload>({
     mutationFn: (payload: CreateCountryPayload) => createCountryApi(payload),
     onSuccess: (data) => {
-      showSuccessToast("Country created", {
+      showSuccessToast(t("created"), {
         description: data.Message,
       });
       queryClient.invalidateQueries({
@@ -24,7 +27,7 @@ export const useCreateCountry = () => {
       });
     },
     onError: (error) => {
-      showErrorToast("Failed to create country", {
+      showErrorToast(t("create_failed"), {
         description: error.message,
       });
     },

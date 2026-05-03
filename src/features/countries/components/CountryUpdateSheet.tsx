@@ -4,6 +4,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "../../../components/ui/sheet";
+import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { useUpdateCountry } from "../hooks/useUpdateCountry";
 import type { Country } from "../types/country.types";
 import { CountryForm } from "./CountryForm";
@@ -16,12 +17,14 @@ type Props = {
 
 export const CountryUpdateSheet = ({ open, onOpenChange, country }: Props) => {
   const mutation = useUpdateCountry();
+  const { t } = useLocalization("p002");
+
   if (!country) return null;
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="bottom" className="max-h-[90vh]">
         <SheetHeader>
-          <SheetTitle>Edit Country</SheetTitle>
+          <SheetTitle>{t("edit_title")}</SheetTitle>
         </SheetHeader>
         <div className="overflow-y-auto px-4">
           <CountryForm

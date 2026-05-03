@@ -11,6 +11,7 @@ import {
   AlertDialogTrigger,
 } from "../../../components/ui/alert-dialog";
 import { Button } from "../../../components/ui/button";
+import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { useDeleteCountry } from "../hooks/useDeleteCountry";
 import type { Country } from "../types/country.types";
 
@@ -20,6 +21,7 @@ type Props = {
 };
 export const DeleteButton = ({ country, onDelete }: Props) => {
   const { isPending, mutate } = useDeleteCountry();
+  const { t } = useLocalization("p002");
 
   return (
     <AlertDialog>
@@ -34,15 +36,12 @@ export const DeleteButton = ({ country, onDelete }: Props) => {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Delete Country</AlertDialogTitle>
-          <AlertDialogDescription>
-            Are you sure you want to delete "{country.name}"? This action cannot
-            be undone.
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t("delete_title")}</AlertDialogTitle>
+          <AlertDialogDescription>{t("delete_confirm")}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel variant="" size="">
-            Cancel
+            {t("cancel")}
           </AlertDialogCancel>
           <AlertDialogAction
             variant=""
@@ -56,7 +55,7 @@ export const DeleteButton = ({ country, onDelete }: Props) => {
               });
             }}
           >
-            {isPending ? "Deleting..." : "Delete"}
+            {isPending ? t("deleting") : t("delete")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
