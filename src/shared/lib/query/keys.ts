@@ -9,7 +9,13 @@ export const queryClientKeys = {
   countries: {
     main: ["countries"],
     index(page: number, limit: number) {
-      return ["countries", page, limit];
+      return [...queryClientKeys.countries, page, limit];
+    },
+  },
+  localization: {
+    main: ["localization"],
+    namespace(language: string, namespace: string) {
+      return [...queryClientKeys.localization.main, language, namespace];
     },
   },
 };
