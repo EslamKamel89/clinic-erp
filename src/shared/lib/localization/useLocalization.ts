@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNamespace } from "./hooks/useNamespace";
 
+/*
+validation => validation keys
+p000 => shared localization 
+p001 => login page 
+p002 => countries CRUD
+*/
+
 type Namespace = "p000" | "p001" | "validation" | "p002";
 
 export function useLocalization(pageId: Namespace) {
@@ -9,7 +16,7 @@ export function useLocalization(pageId: Namespace) {
     useSuspense: false,
   });
 
-  const staticNamespaces = ["p000", "validation"];
+  const staticNamespaces = ["p000", "validation", "p001"];
   const shouldFetch = !staticNamespaces.includes(pageId);
 
   const { data, isLoading } = useNamespace(pageId, {
@@ -28,7 +35,7 @@ export function useLocalization(pageId: Namespace) {
     });
 
     if (result === key) {
-      return ".....";
+      return "_ _ _";
     }
 
     return result;

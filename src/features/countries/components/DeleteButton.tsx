@@ -40,12 +40,8 @@ export const DeleteButton = ({ country, onDelete }: Props) => {
           <AlertDialogDescription>{t("delete_confirm")}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel variant="" size="">
-            {t("cancel")}
-          </AlertDialogCancel>
+          <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
           <AlertDialogAction
-            variant=""
-            size=""
             disabled={isPending}
             onClick={() => {
               mutate(country.id, {
