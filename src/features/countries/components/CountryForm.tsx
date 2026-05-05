@@ -15,6 +15,7 @@ type Props = {
 
 export const CountryForm = ({ defaultValues, onSubmit, isLoading }: Props) => {
   const { t: tValidation } = useLocalization("validation");
+  const { t } = useLocalization("p002");
 
   const {
     register,
@@ -46,7 +47,7 @@ export const CountryForm = ({ defaultValues, onSubmit, isLoading }: Props) => {
         </FieldLabel>
         <Input
           id="Obj_Name"
-          placeholder={undefined}
+          placeholder={t("name_placeholder")}
           {...register("Obj_Name")}
           aria-invalid={!!nameError}
         />
@@ -60,7 +61,7 @@ export const CountryForm = ({ defaultValues, onSubmit, isLoading }: Props) => {
         </FieldLabel>
         <Input
           id="PhoneCode"
-          placeholder={undefined}
+          placeholder={t("phone_placeholder")}
           {...register("PhoneCode")}
           aria-invalid={!!phoneError}
         />
@@ -72,7 +73,11 @@ export const CountryForm = ({ defaultValues, onSubmit, isLoading }: Props) => {
         <FieldLabel htmlFor="Notes">
           <TText ns="p002" k="notes" width={6} />
         </FieldLabel>
-        <Input id="Notes" placeholder={undefined} {...register("Notes")} />
+        <Input
+          id="Notes"
+          placeholder={t("notes_placeholder")}
+          {...register("Notes")}
+        />
       </Field>
 
       {/* Actions */}
