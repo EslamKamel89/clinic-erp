@@ -1,4 +1,4 @@
-import { TextSkeleton } from "@/shared/components/skeleton/TextSkeleton";
+import { TText } from "@/shared/components/localization/TText";
 import { useQueryClient } from "@tanstack/react-query";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
@@ -7,7 +7,6 @@ import { Separator } from "../../../components/ui/separator";
 import { Pagination } from "../../../shared/components/pagination/Pagination";
 import { DataTable } from "../../../shared/components/table/DataTable";
 import type { Column } from "../../../shared/components/table/types";
-import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { usePermissions } from "../../../shared/lib/permissions/usePermissions";
 import { queryClientKeys } from "../../../shared/lib/query/keys";
 import { CountryCreateSheet } from "../components/CountryCreateSheet";
@@ -30,7 +29,6 @@ export const CountryIndexPage = () => {
   });
 
   const { can } = usePermissions();
-  const { t, isLoading: localeLoading } = useLocalization("p002");
 
   const canCreate = can("countries", "create");
   const canUpdate = can("countries", "update");
@@ -39,18 +37,18 @@ export const CountryIndexPage = () => {
   const columns: Column<Country>[] = [
     {
       id: "name",
-      label: localeLoading ? <TextSkeleton width={6} /> : t("name"),
+      label: <TText ns="p002" k="name" width={6} />,
       accessor: (row) => row.name,
       mobile: { title: true },
     },
     {
       id: "phoneCode",
-      label: localeLoading ? <TextSkeleton width={8} /> : t("phone_code"),
+      label: <TText ns="p002" k="phone_code" width={8} />,
       accessor: (row) => row.phoneCode,
     },
     {
       id: "notes",
-      label: localeLoading ? <TextSkeleton width={6} /> : t("notes"),
+      label: <TText ns="p002" k="notes" width={6} />,
       accessor: (row) => row.notes,
     },
     {
@@ -95,21 +93,17 @@ export const CountryIndexPage = () => {
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1">
           <h1 className="text-xl font-semibold tracking-tight">
-            {localeLoading ? <TextSkeleton width={8} /> : t("title")}
+            <TText ns="p002" k="title" width={8} />
           </h1>
 
           <p className="text-sm text-muted-foreground">
-            {localeLoading ? <TextSkeleton width={20} /> : t("subtitle")}
+            <TText ns="p002" k="subtitle" width={20} />
           </p>
         </div>
 
         {canCreate && (
           <Button onClick={() => setIsCreateOpen(true)}>
-            {localeLoading ? (
-              <TextSkeleton width={5} className="text-md" />
-            ) : (
-              t("add")
-            )}
+            <TText ns="p002" k="add" width={5} className="text-md" />
           </Button>
         )}
       </div>
@@ -123,7 +117,7 @@ export const CountryIndexPage = () => {
             <div className="size-6 animate-spin rounded-full border-2 border-muted border-t-primary" />
 
             <p className="text-sm text-muted-foreground">
-              {localeLoading ? <TextSkeleton width={12} /> : t("loading")}
+              <TText ns="p002" k="loading" width={12} />
             </p>
           </div>
         </div>
@@ -134,7 +128,7 @@ export const CountryIndexPage = () => {
         <div className="flex items-center justify-center py-16">
           <div className="flex flex-col items-center gap-3 text-center">
             <p className="text-sm text-destructive">
-              {localeLoading ? <TextSkeleton width={14} /> : t("error")}
+              <TText ns="p002" k="error" width={14} />
             </p>
 
             <Button
@@ -146,7 +140,7 @@ export const CountryIndexPage = () => {
                 setPage(1);
               }}
             >
-              {localeLoading ? <TextSkeleton width={5} /> : t("retry")}
+              <TText ns="p002" k="retry" width={5} />
             </Button>
           </div>
         </div>
@@ -160,9 +154,7 @@ export const CountryIndexPage = () => {
             data={items ?? []}
             columns={columns}
             getRowId={(row) => row.id}
-            emptyMessage={
-              localeLoading ? <TextSkeleton width={12} /> : t("empty")
-            }
+            emptyMessage={<TText ns="p002" k="empty" width={12} />}
           />
 
           {/* Pagination */}

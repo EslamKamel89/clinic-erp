@@ -1,11 +1,10 @@
+import { TText } from "@/shared/components/localization/TText";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "../../../components/ui/sheet";
-import { TextSkeleton } from "../../../shared/components/skeleton/TextSkeleton";
-import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { useUpdateCountry } from "../hooks/useUpdateCountry";
 import type { Country } from "../types/country.types";
 import { CountryForm } from "./CountryForm";
@@ -18,7 +17,6 @@ type Props = {
 
 export const CountryUpdateSheet = ({ open, onOpenChange, country }: Props) => {
   const mutation = useUpdateCountry();
-  const { t, isLoading: localeLoading } = useLocalization("p002");
 
   if (!country) return null;
 
@@ -27,7 +25,7 @@ export const CountryUpdateSheet = ({ open, onOpenChange, country }: Props) => {
       <SheetContent side="bottom" className="max-h-[90vh]">
         <SheetHeader>
           <SheetTitle>
-            {localeLoading ? <TextSkeleton width={12} /> : t("edit_title")}
+            <TText ns="p002" k="edit_title" width={12} />
           </SheetTitle>
         </SheetHeader>
 

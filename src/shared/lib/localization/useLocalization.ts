@@ -9,7 +9,7 @@ p001 => login page
 p002 => countries CRUD
 */
 
-type Namespace = "p000" | "p001" | "validation" | "p002";
+export type Namespace = "p000" | "p001" | "validation" | "p002";
 
 export function useLocalization(pageId: Namespace) {
   const { t: originalT, i18n } = useTranslation(pageId, {

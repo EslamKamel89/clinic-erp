@@ -1,3 +1,4 @@
+import { TText } from "@/shared/components/localization/TText";
 import { Trash2 } from "lucide-react";
 import {
   AlertDialog,
@@ -11,8 +12,6 @@ import {
   AlertDialogTrigger,
 } from "../../../components/ui/alert-dialog";
 import { Button } from "../../../components/ui/button";
-import { TextSkeleton } from "../../../shared/components/skeleton/TextSkeleton";
-import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { useDeleteCountry } from "../hooks/useDeleteCountry";
 import type { Country } from "../types/country.types";
 
@@ -23,7 +22,6 @@ type Props = {
 
 export const DeleteButton = ({ country, onDelete }: Props) => {
   const { isPending, mutate } = useDeleteCountry();
-  const { t, isLoading: localeLoading } = useLocalization("p002");
 
   return (
     <AlertDialog>
@@ -40,17 +38,17 @@ export const DeleteButton = ({ country, onDelete }: Props) => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            {localeLoading ? <TextSkeleton width={12} /> : t("delete_title")}
+            <TText ns="p002" k="delete_title" width={12} />
           </AlertDialogTitle>
 
           <AlertDialogDescription>
-            {localeLoading ? <TextSkeleton width={20} /> : t("delete_confirm")}
+            <TText ns="p002" k="delete_confirm" width={20} />
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
           <AlertDialogCancel>
-            {localeLoading ? <TextSkeleton width={6} /> : t("cancel")}
+            <TText ns="p002" k="cancel" width={6} />
           </AlertDialogCancel>
 
           <AlertDialogAction
@@ -63,12 +61,10 @@ export const DeleteButton = ({ country, onDelete }: Props) => {
               });
             }}
           >
-            {localeLoading ? (
-              <TextSkeleton width={6} />
-            ) : isPending ? (
-              t("deleting")
+            {isPending ? (
+              <TText ns="p002" k="deleting" width={6} />
             ) : (
-              t("delete")
+              <TText ns="p002" k="delete" width={6} />
             )}
           </AlertDialogAction>
         </AlertDialogFooter>
