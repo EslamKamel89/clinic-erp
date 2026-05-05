@@ -16,13 +16,13 @@ export async function loginApi(
     );
     // there is a bug in the backend so i override the response until the bug is fixed.
     // the override below is acceptable temporary
-    response.data.Permission = {
-      "User Accounts": ["create", "update", "delete"],
-      Languages: ["create", "update", "delete", "show"],
-      Counties: ["create", "update", "delete", "show"],
-      States: ["create", "update", "delete", "show"],
-      Cities: ["create", "update", "show"],
-    };
+    // response.data.Permission = {
+    //   "User Accounts": ["create", "update", "delete"],
+    //   Languages: ["create", "update", "delete", "show"],
+    //   Counties: ["create", "update", "delete", "show"],
+    //   States: ["create", "update", "delete", "show"],
+    //   Cities: ["create", "update", "show"],
+    // };
     return response.data;
   } catch (error) {
     throw normalizeApiError(error);
