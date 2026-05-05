@@ -11,7 +11,7 @@ export async function getNamespaceApi(
 ): Promise<Record<string, string>> {
   let raw: RawLocalizationItem[];
   if (USE_DUMMY) {
-    await sleep(1);
+    await sleep(2);
     raw = dummyBackendResponse(namespace, language);
   } else {
     raw = await realBackendResponse(namespace);

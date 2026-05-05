@@ -1,3 +1,4 @@
+import { TextSkeleton } from "@/shared/components/skeleton/TextSkeleton";
 import { useQueryClient } from "@tanstack/react-query";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
@@ -22,30 +23,34 @@ export const CountryIndexPage = () => {
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   const queryClient = useQueryClient();
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+
   const { items, currentPage, isError, total, isLoading } = useCountries({
     page,
     limit,
   });
+
   const { can } = usePermissions();
-  const { t } = useLocalization("p002");
+  const { t, isLoading: localeLoading } = useLocalization("p002");
+
   const canCreate = can("countries", "create");
   const canUpdate = can("countries", "update");
   const canDelete = can("countries", "delete");
+
   const columns: Column<Country>[] = [
     {
       id: "name",
-      label: t("name"),
+      label: localeLoading ? <TextSkeleton width={6} /> : t("name"),
       accessor: (row) => row.name,
       mobile: { title: true },
     },
     {
       id: "phoneCode",
-      label: t("phone_code"),
+      label: localeLoading ? <TextSkeleton width={8} /> : t("phone_code"),
       accessor: (row) => row.phoneCode,
     },
     {
       id: "notes",
-      label: t("notes"),
+      label: localeLoading ? <TextSkeleton width={6} /> : t("notes"),
       accessor: (row) => row.notes,
     },
     {
@@ -67,6 +72,7 @@ export const CountryIndexPage = () => {
               <Pencil className="size-4" />
             </Button>
           )}
+
           {canDelete && (
             <DeleteButton
               country={row}
@@ -88,11 +94,23 @@ export const CountryIndexPage = () => {
       {/* Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1">
-          <h1 className="text-xl font-semibold tracking-tight">{t("title")}</h1>
-          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
+          <h1 className="text-xl font-semibold tracking-tight">
+            {localeLoading ? <TextSkeleton width={8} /> : t("title")}
+          </h1>
+
+          <p className="text-sm text-muted-foreground">
+            {localeLoading ? <TextSkeleton width={20} /> : t("subtitle")}
+          </p>
         </div>
+
         {canCreate && (
-          <Button onClick={() => setIsCreateOpen(true)}>{t("add")}</Button>
+          <Button onClick={() => setIsCreateOpen(true)}>
+            {localeLoading ? (
+              <TextSkeleton width={5} className="text-md" />
+            ) : (
+              t("add")
+            )}
+          </Button>
         )}
       </div>
 
@@ -103,7 +121,10 @@ export const CountryIndexPage = () => {
         <div className="flex items-center justify-center py-16">
           <div className="flex flex-col items-center gap-3">
             <div className="size-6 animate-spin rounded-full border-2 border-muted border-t-primary" />
-            <p className="text-sm text-muted-foreground">{t("loading")}</p>
+
+            <p className="text-sm text-muted-foreground">
+              {localeLoading ? <TextSkeleton width={12} /> : t("loading")}
+            </p>
           </div>
         </div>
       )}
@@ -112,7 +133,10 @@ export const CountryIndexPage = () => {
       {isError && !isLoading && (
         <div className="flex items-center justify-center py-16">
           <div className="flex flex-col items-center gap-3 text-center">
-            <p className="text-sm text-destructive">{t("error")}</p>
+            <p className="text-sm text-destructive">
+              {localeLoading ? <TextSkeleton width={14} /> : t("error")}
+            </p>
+
             <Button
               variant="outline"
               onClick={async () => {
@@ -122,7 +146,7 @@ export const CountryIndexPage = () => {
                 setPage(1);
               }}
             >
-              {t("retry")}
+              {localeLoading ? <TextSkeleton width={5} /> : t("retry")}
             </Button>
           </div>
         </div>
@@ -136,7 +160,9 @@ export const CountryIndexPage = () => {
             data={items ?? []}
             columns={columns}
             getRowId={(row) => row.id}
-            emptyMessage={t("empty")}
+            emptyMessage={
+              localeLoading ? <TextSkeleton width={12} /> : t("empty")
+            }
           />
 
           {/* Pagination */}

@@ -11,6 +11,7 @@ import {
   AlertDialogTrigger,
 } from "../../../components/ui/alert-dialog";
 import { Button } from "../../../components/ui/button";
+import { TextSkeleton } from "../../../shared/components/skeleton/TextSkeleton";
 import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { useDeleteCountry } from "../hooks/useDeleteCountry";
 import type { Country } from "../types/country.types";
@@ -19,9 +20,10 @@ type Props = {
   country: Country;
   onDelete: () => void;
 };
+
 export const DeleteButton = ({ country, onDelete }: Props) => {
   const { isPending, mutate } = useDeleteCountry();
-  const { t } = useLocalization("p002");
+  const { t, isLoading: localeLoading } = useLocalization("p002");
 
   return (
     <AlertDialog>
@@ -34,13 +36,23 @@ export const DeleteButton = ({ country, onDelete }: Props) => {
           <Trash2 className="size-4" />
         </Button>
       </AlertDialogTrigger>
+
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{t("delete_title")}</AlertDialogTitle>
-          <AlertDialogDescription>{t("delete_confirm")}</AlertDialogDescription>
+          <AlertDialogTitle>
+            {localeLoading ? <TextSkeleton width={12} /> : t("delete_title")}
+          </AlertDialogTitle>
+
+          <AlertDialogDescription>
+            {localeLoading ? <TextSkeleton width={20} /> : t("delete_confirm")}
+          </AlertDialogDescription>
         </AlertDialogHeader>
+
         <AlertDialogFooter>
-          <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
+          <AlertDialogCancel>
+            {localeLoading ? <TextSkeleton width={6} /> : t("cancel")}
+          </AlertDialogCancel>
+
           <AlertDialogAction
             disabled={isPending}
             onClick={() => {
@@ -51,7 +63,13 @@ export const DeleteButton = ({ country, onDelete }: Props) => {
               });
             }}
           >
-            {isPending ? t("deleting") : t("delete")}
+            {localeLoading ? (
+              <TextSkeleton width={6} />
+            ) : isPending ? (
+              t("deleting")
+            ) : (
+              t("delete")
+            )}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

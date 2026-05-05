@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "../../../components/ui/button";
 import { Field, FieldError, FieldLabel } from "../../../components/ui/field";
 import { Input } from "../../../components/ui/input";
+import { TextSkeleton } from "../../../shared/components/skeleton/TextSkeleton";
 import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { countrySchema, type CountryFormData } from "../schemas/country.schema";
 
@@ -13,9 +14,9 @@ type Props = {
 };
 
 export const CountryForm = ({ defaultValues, onSubmit, isLoading }: Props) => {
-  const { t } = useLocalization("p002");
-
+  const { t, isLoading: localeLoading } = useLocalization("p002");
   const { t: tValidation } = useLocalization("validation");
+
   const {
     register,
     handleSubmit,
@@ -41,10 +42,12 @@ export const CountryForm = ({ defaultValues, onSubmit, isLoading }: Props) => {
     <form onSubmit={handleSubmit(submitHandler)} className="space-y-5">
       {/* Name */}
       <Field className="space-y-2" data-invalid={!!nameError}>
-        <FieldLabel htmlFor="Obj_Name">{t("name")}</FieldLabel>
+        <FieldLabel htmlFor="Obj_Name">
+          {localeLoading ? <TextSkeleton width={6} /> : t("name")}
+        </FieldLabel>
         <Input
           id="Obj_Name"
-          placeholder={t("name_placeholder")}
+          placeholder={localeLoading ? undefined : t("name_placeholder")}
           {...register("Obj_Name")}
           aria-invalid={!!nameError}
         />
@@ -53,10 +56,12 @@ export const CountryForm = ({ defaultValues, onSubmit, isLoading }: Props) => {
 
       {/* Phone Code */}
       <Field className="space-y-2" data-invalid={!!phoneError}>
-        <FieldLabel htmlFor="PhoneCode">{t("phone_code")}</FieldLabel>
+        <FieldLabel htmlFor="PhoneCode">
+          {localeLoading ? <TextSkeleton width={8} /> : t("phone_code")}
+        </FieldLabel>
         <Input
           id="PhoneCode"
-          placeholder={t("phone_placeholder")}
+          placeholder={localeLoading ? undefined : t("phone_placeholder")}
           {...register("PhoneCode")}
           aria-invalid={!!phoneError}
         />
@@ -65,10 +70,12 @@ export const CountryForm = ({ defaultValues, onSubmit, isLoading }: Props) => {
 
       {/* Notes */}
       <Field className="space-y-2">
-        <FieldLabel htmlFor="Notes">{t("notes")}</FieldLabel>
+        <FieldLabel htmlFor="Notes">
+          {localeLoading ? <TextSkeleton width={6} /> : t("notes")}
+        </FieldLabel>
         <Input
           id="Notes"
-          placeholder={t("notes_placeholder")}
+          placeholder={localeLoading ? undefined : t("notes_placeholder")}
           {...register("Notes")}
         />
       </Field>
@@ -76,7 +83,13 @@ export const CountryForm = ({ defaultValues, onSubmit, isLoading }: Props) => {
       {/* Actions */}
       <div className="pt-2 flex justify-end">
         <Button type="submit" disabled={isLoading}>
-          {isLoading ? t("saving") : t("save")}
+          {localeLoading ? (
+            <TextSkeleton width={5} />
+          ) : isLoading ? (
+            t("saving")
+          ) : (
+            t("save")
+          )}
         </Button>
       </div>
     </form>

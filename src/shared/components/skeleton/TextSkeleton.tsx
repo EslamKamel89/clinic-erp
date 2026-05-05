@@ -2,11 +2,13 @@ type Props = {
   width: number;
   className?: string;
 };
-export const TestSkelton = ({ width, className }: Props) => {
+export const TextSkeleton = ({ width = 5, className }: Props) => {
   return (
     <span
-      className={`inline-block rounded-md bg-muted animate-pulse ${className}`}
+      className={`inline-block align-middle rounded-md bg-muted animate-pulse text-md text-transparent ${className}`}
       style={{ width: `${width}ch` }}
-    ></span>
+    >
+      .
+    </span>
   );
 };

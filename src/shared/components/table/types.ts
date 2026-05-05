@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 export type ColumnType = "text" | "number" | "boolean" | "badge" | "date";
 export type Column<T> = {
   id: string;
-  label: string;
+  label: string | ReactNode;
   accessor: (row: T) => unknown;
   type?: ColumnType;
   render?: (value: unknown, row: T) => ReactNode;
@@ -16,5 +16,5 @@ export type DataTableProps<T> = {
   data: T[];
   columns: Column<T>[];
   getRowId: (row: T) => string | number;
-  emptyMessage?: string;
+  emptyMessage?: string | ReactNode;
 };

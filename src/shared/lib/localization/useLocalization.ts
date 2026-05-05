@@ -35,7 +35,8 @@ export function useLocalization(pageId: Namespace) {
     });
 
     if (result === key) {
-      return "_ _ _";
+      // console.warn(`[i18n] Missing key "${key}" in namespace "${pageId}"`);
+      return key;
     }
 
     return result;

@@ -4,6 +4,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "../../../components/ui/sheet";
+import { TextSkeleton } from "../../../shared/components/skeleton/TextSkeleton";
 import { useLocalization } from "../../../shared/lib/localization/useLocalization";
 import { useUpdateCountry } from "../hooks/useUpdateCountry";
 import type { Country } from "../types/country.types";
@@ -17,15 +18,19 @@ type Props = {
 
 export const CountryUpdateSheet = ({ open, onOpenChange, country }: Props) => {
   const mutation = useUpdateCountry();
-  const { t } = useLocalization("p002");
+  const { t, isLoading: localeLoading } = useLocalization("p002");
 
   if (!country) return null;
+
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="bottom" className="max-h-[90vh]">
         <SheetHeader>
-          <SheetTitle>{t("edit_title")}</SheetTitle>
+          <SheetTitle>
+            {localeLoading ? <TextSkeleton width={12} /> : t("edit_title")}
+          </SheetTitle>
         </SheetHeader>
+
         <div className="overflow-y-auto px-4">
           <CountryForm
             defaultValues={{
