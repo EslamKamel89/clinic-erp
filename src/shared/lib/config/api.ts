@@ -7,5 +7,7 @@ export const API_ENDPOINTS = {
   countryCreate: "/api/countries",
   countryUpdate: (id: number) => `/api/countries/${id}`,
   countryDelete: (id: number) => `/api/countries/${id}`,
+  employeesIndex: "/api/employees",
+  employeeById: (id: number) => `/api/employees/${id}`,
   translations: "/api/translations",
 };

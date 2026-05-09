@@ -1,3 +1,7 @@
+import { EmployeeCreatePage } from "@/features/employees/pages/CreatePage";
+import { EmployeeEditPage } from "@/features/employees/pages/EditPage";
+import { EmployeeIndexPage } from "@/features/employees/pages/IndexPage";
+import { EmployeeShowPage } from "@/features/employees/pages/ShowPage";
 import { createBrowserRouter } from "react-router-dom";
 import { LoginPage } from "../../features/auth/pages/LoginPage";
 import { CountryIndexPage } from "../../features/countries/pages/IndexPage";
@@ -30,6 +34,29 @@ export const router = createBrowserRouter([
                   {
                     path: "/main-data/countries",
                     element: <CountryIndexPage />,
+                  },
+                ],
+              },
+              {
+                element: (
+                  <RequirePermission resource="employees" action="show" />
+                ),
+                children: [
+                  {
+                    path: "/main-data/employees",
+                    element: <EmployeeIndexPage />,
+                  },
+                  {
+                    path: "/main-data/employees/create",
+                    element: <EmployeeCreatePage />,
+                  },
+                  {
+                    path: "/main-data/employees/:id",
+                    element: <EmployeeShowPage />,
+                  },
+                  {
+                    path: "/main-data/employees/:id/edit",
+                    element: <EmployeeEditPage />,
                   },
                 ],
               },

@@ -62,6 +62,7 @@ export type LoginResponseRaw = {
     Counties: Action[];
     States: Action[];
     Cities: Action[];
+    Employees: Action[];
   };
 };
 
@@ -72,7 +73,7 @@ export type RawMenuItem = {
   children?: RawMenuItem[];
 };
 
-export type Action = "create" | "update" | "delete" | "show";
+export type Action = "create" | "update" | "delete" | "show" | "print";
 
 export type Permissions = {
   userAccounts: Action[];
@@ -80,4 +81,5 @@ export type Permissions = {
   countries: Action[];
   states: Action[];
   cities: Action[];
+  employees: Action[];
 };

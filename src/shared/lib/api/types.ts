@@ -3,3 +3,8 @@ export type ApiResponse<T> = {
   Message: string;
   data: T;
 };
+
+export type SelectOption = {
+  value: number;
+  label: string;
+};

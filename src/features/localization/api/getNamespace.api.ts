@@ -4,7 +4,7 @@ import { API_ENDPOINTS } from "../../../shared/lib/config/api";
 import { sleep } from "../../../shared/lib/helpers/sleep";
 import type { RawLocalizationItem } from "../types/localization.types";
 
-const USE_DUMMY = false;
+const USE_DUMMY = true;
 export async function getNamespaceApi(
   namespace: string,
   language: string,
@@ -122,6 +122,149 @@ function dummyBackendResponse(
         { key: "update_failed", label: "فشل في تحديث الدولة" },
         { key: "deleted", label: "تم حذف الدولة بنجاح" },
         { key: "delete_failed", label: "فشل في حذف الدولة" },
+      ],
+    },
+    p008: {
+      en: [
+        {
+          key: "title",
+          label: "Employees",
+        },
+
+        {
+          key: "subtitle",
+          label: "Manage and view employees",
+        },
+
+        {
+          key: "add",
+          label: "Add Employee",
+        },
+
+        {
+          key: "loading",
+          label: "Loading employees...",
+        },
+
+        {
+          key: "error",
+          label: "Failed to load employees",
+        },
+
+        {
+          key: "retry",
+          label: "Retry",
+        },
+
+        {
+          key: "empty",
+          label: "No employees found",
+        },
+
+        {
+          key: "name",
+          label: "Name",
+        },
+
+        {
+          key: "phone",
+          label: "Phone",
+        },
+
+        {
+          key: "branch",
+          label: "Branch",
+        },
+
+        {
+          key: "national_id",
+          label: "National ID",
+        },
+        {
+          key: "address",
+          label: "Address",
+        },
+
+        {
+          key: "social_id",
+          label: "Social ID",
+        },
+
+        {
+          key: "notes",
+          label: "Notes",
+        },
+      ],
+
+      ar: [
+        {
+          key: "title",
+          label: "الموظفين",
+        },
+
+        {
+          key: "subtitle",
+          label: "إدارة وعرض الموظفين",
+        },
+
+        {
+          key: "add",
+          label: "إضافة موظف",
+        },
+
+        {
+          key: "loading",
+          label: "جاري تحميل الموظفين",
+        },
+
+        {
+          key: "error",
+          label: "فشل تحميل الموظفين",
+        },
+
+        {
+          key: "retry",
+          label: "إعادة المحاولة",
+        },
+
+        {
+          key: "empty",
+          label: "لا يوجد موظفين",
+        },
+
+        {
+          key: "name",
+          label: "الاسم",
+        },
+
+        {
+          key: "phone",
+          label: "الهاتف",
+        },
+
+        {
+          key: "branch",
+          label: "الفرع",
+        },
+
+        {
+          key: "national_id",
+          label: "الرقم القومي",
+        },
+        {
+          key: "address",
+          label: "العنوان",
+        },
+
+        {
+          key: "social_id",
+          label: "الرقم التأميني",
+        },
+
+        {
+          key: "notes",
+          label: "ملاحظات",
+        },
       ],
     },
   };

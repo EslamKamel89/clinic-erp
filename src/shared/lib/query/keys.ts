@@ -12,6 +12,15 @@ export const queryClientKeys = {
       return ["countries", page, limit];
     },
   },
+  employees: {
+    main: ["employees"],
+    index(page: number, limit: number) {
+      return ["employees", page, limit];
+    },
+    details(id: number) {
+      return ["employees", "details", id];
+    },
+  },
   localization: {
     main: ["localization"],
     namespace(language: string, namespace: string) {
