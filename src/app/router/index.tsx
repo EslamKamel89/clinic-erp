@@ -47,14 +47,29 @@ export const router = createBrowserRouter([
                     path: appRoutes.employee.index,
                     element: <EmployeeIndexPage />,
                   },
-                  {
-                    path: appRoutes.employee.create,
-                    element: <EmployeeCreatePage />,
-                  },
+
                   {
                     path: appRoutes.employee.showTemplate,
                     element: <EmployeeShowPage />,
                   },
+                ],
+              },
+              {
+                element: (
+                  <RequirePermission resource="employees" action="create" />
+                ),
+                children: [
+                  {
+                    path: appRoutes.employee.create,
+                    element: <EmployeeCreatePage />,
+                  },
+                ],
+              },
+              {
+                element: (
+                  <RequirePermission resource="employees" action="update" />
+                ),
+                children: [
                   {
                     path: appRoutes.employee.editTemplate,
                     element: <EmployeeEditPage />,
