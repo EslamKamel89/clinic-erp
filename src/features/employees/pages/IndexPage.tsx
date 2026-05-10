@@ -49,7 +49,11 @@ export const EmployeeIndexPage = () => {
         title: true,
       },
     },
-
+    {
+      id: "job_name",
+      label: <TText ns="p008" k="job_name" width={8} />,
+      accessor: (row) => row.jobName,
+    },
     {
       id: "phone",
 

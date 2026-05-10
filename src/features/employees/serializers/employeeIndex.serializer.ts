@@ -29,5 +29,7 @@ export const serializeEmployeeIndexResponse = (
     cityName: employee.City_Name ?? "",
     cityId: employee.City_ID,
     notes: employee.Notes ?? "",
+    jobId: employee.Job_ID ?? 1,
+    jobName: employee.Job_Name ?? "",
   }));
 };

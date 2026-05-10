@@ -194,6 +194,11 @@ function dummyBackendResponse(
           key: "notes",
           label: "Notes",
         },
+
+        {
+          key: "job_name",
+          label: "Job",
+        },
       ],
 
       ar: [
@@ -264,6 +269,10 @@ function dummyBackendResponse(
         {
           key: "notes",
           label: "ملاحظات",
+        },
+        {
+          key: "job_name",
+          label: "الوظيفة",
         },
       ],
     },

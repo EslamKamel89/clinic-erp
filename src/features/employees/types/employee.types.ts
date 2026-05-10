@@ -24,6 +24,8 @@ export type EmployeeRaw = {
   City_Name: string | null;
   City_ID: number | null;
   Notes: string | null;
+  Job_Name: string | null;
+  Job_ID: number | null;
 };
 export type Employee = {
   id: number;
@@ -51,4 +53,6 @@ export type Employee = {
   cityName: string;
   cityId: number | null;
   notes: string;
+  jobName: string;
+  jobId: number;
 };
