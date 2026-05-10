@@ -130,78 +130,141 @@ function dummyBackendResponse(
           key: "title",
           label: "Employees",
         },
-
         {
           key: "subtitle",
           label: "Manage and view employees",
         },
-
         {
           key: "add",
           label: "Add Employee",
         },
-
         {
           key: "loading",
           label: "Loading employees...",
         },
-
         {
           key: "error",
           label: "Failed to load employees",
         },
-
         {
           key: "retry",
           label: "Retry",
         },
-
         {
           key: "empty",
           label: "No employees found",
         },
-
         {
           key: "name",
           label: "Name",
         },
-
         {
           key: "phone",
           label: "Phone",
         },
-
+        {
+          key: "mobile",
+          label: "Mobile",
+        },
+        {
+          key: "email",
+          label: "Email",
+        },
         {
           key: "branch",
           label: "Branch",
         },
-
-        {
-          key: "national_id",
-          label: "National ID",
-        },
-        {
-          key: "address",
-          label: "Address",
-        },
-
-        {
-          key: "social_id",
-          label: "Social ID",
-        },
-
-        {
-          key: "notes",
-          label: "Notes",
-        },
-
         {
           key: "job_name",
           label: "Job",
         },
         {
+          key: "gender",
+          label: "Gender",
+        },
+        {
+          key: "military_status",
+          label: "Military Status",
+        },
+        {
+          key: "marital_status",
+          label: "Marital Status",
+        },
+        {
+          key: "birth_date",
+          label: "Birth Date",
+        },
+        {
+          key: "national_id",
+          label: "National ID",
+        },
+        {
+          key: "social_id",
+          label: "Social ID",
+        },
+        {
+          key: "address",
+          label: "Address",
+        },
+        {
+          key: "notes",
+          label: "Notes",
+        },
+        {
+          key: "country",
+          label: "Country",
+        },
+        {
+          key: "state",
+          label: "State",
+        },
+        {
+          key: "city",
+          label: "City",
+        },
+        {
+          key: "active",
+          label: "Active",
+        },
+        {
           key: "actions",
           label: "Actions",
+        },
+        {
+          key: "save",
+          label: "Save",
+        },
+        {
+          key: "select_country",
+          label: "Select Country",
+        },
+        {
+          key: "select_state",
+          label: "Select State",
+        },
+        {
+          key: "select_city",
+          label: "Select City",
+        },
+        {
+          key: "select_gender",
+          label: "Select Gender",
+        },
+        {
+          key: "select_branch",
+          label: "Select Branch",
+        },
+        {
+          key: "select_job",
+          label: "Select Job",
+        },
+        {
+          key: "select_military_status",
+          label: "Select Military Status",
+        },
+        {
+          key: "select_marital_status",
+          label: "Select Marital Status",
         },
       ],
 
@@ -210,77 +273,141 @@ function dummyBackendResponse(
           key: "title",
           label: "الموظفين",
         },
-
         {
           key: "subtitle",
           label: "إدارة وعرض الموظفين",
         },
-
         {
           key: "add",
           label: "إضافة موظف",
         },
-
         {
           key: "loading",
           label: "جاري تحميل الموظفين",
         },
-
         {
           key: "error",
           label: "فشل تحميل الموظفين",
         },
-
         {
           key: "retry",
           label: "إعادة المحاولة",
         },
-
         {
           key: "empty",
           label: "لا يوجد موظفين",
         },
-
         {
           key: "name",
           label: "الاسم",
         },
-
         {
           key: "phone",
           label: "الهاتف",
         },
-
+        {
+          key: "mobile",
+          label: "الموبايل",
+        },
+        {
+          key: "email",
+          label: "البريد الإلكتروني",
+        },
         {
           key: "branch",
           label: "الفرع",
-        },
-
-        {
-          key: "national_id",
-          label: "الرقم القومي",
-        },
-        {
-          key: "address",
-          label: "العنوان",
-        },
-
-        {
-          key: "social_id",
-          label: "الرقم التأميني",
-        },
-
-        {
-          key: "notes",
-          label: "ملاحظات",
         },
         {
           key: "job_name",
           label: "الوظيفة",
         },
         {
+          key: "gender",
+          label: "النوع",
+        },
+        {
+          key: "military_status",
+          label: "الموقف العسكري",
+        },
+        {
+          key: "marital_status",
+          label: "الحالة الاجتماعية",
+        },
+        {
+          key: "birth_date",
+          label: "تاريخ الميلاد",
+        },
+        {
+          key: "national_id",
+          label: "الرقم القومي",
+        },
+        {
+          key: "social_id",
+          label: "الرقم التأميني",
+        },
+        {
+          key: "address",
+          label: "العنوان",
+        },
+        {
+          key: "notes",
+          label: "ملاحظات",
+        },
+        {
+          key: "country",
+          label: "الدولة",
+        },
+        {
+          key: "state",
+          label: "المحافظة",
+        },
+        {
+          key: "city",
+          label: "المدينة",
+        },
+        {
+          key: "active",
+          label: "نشط",
+        },
+        {
           key: "actions",
           label: "الإجراءات",
+        },
+        {
+          key: "save",
+          label: "حفظ",
+        },
+        {
+          key: "select_country",
+          label: "اختر الدولة",
+        },
+        {
+          key: "select_state",
+          label: "اختر المحافظة",
+        },
+        {
+          key: "select_city",
+          label: "اختر المدينة",
+        },
+        {
+          key: "select_gender",
+          label: "اختر النوع",
+        },
+        {
+          key: "select_branch",
+          label: "اختر الفرع",
+        },
+        {
+          key: "select_job",
+          label: "اختر الوظيفة",
+        },
+        {
+          key: "select_military_status",
+          label: "اختر الموقف العسكري",
+        },
+        {
+          key: "select_marital_status",
+          label: "اختر الحالة الاجتماعية",
         },
       ],
     },
