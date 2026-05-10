@@ -21,6 +21,15 @@ export const queryClientKeys = {
       return ["employees", "details", id];
     },
   },
+  //  i want to keep the dropdown data under separate key for reusability because later i will reuse the same component for example in the doctors resource.
+  dropdownData: {
+    states(countryId: number) {
+      return ["dropdownData", "states", countryId];
+    },
+    cities(stateId: number) {
+      return ["dropdownData", "cities", stateId];
+    },
+  },
   localization: {
     main: ["localization"],
     namespace(language: string, namespace: string) {

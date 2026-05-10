@@ -9,5 +9,10 @@ export const API_ENDPOINTS = {
   countryDelete: (id: number) => `/api/countries/${id}`,
   employeesIndex: "/api/employees",
   employeeById: (id: number) => `/api/employees/${id}`,
+  employeeCreate: "/api/employees",
+  employeeUpdate: (id: number) => `/api/employees/${id}`,
+  employeeDelete: (id: number) => `/api/employees/${id}`,
+  states: "/api/states",
+  cities: "/api/cities",
   translations: "/api/translations",
 };
