@@ -2,6 +2,7 @@ import { EmployeeCreatePage } from "@/features/employees/pages/CreatePage";
 import { EmployeeEditPage } from "@/features/employees/pages/EditPage";
 import { EmployeeIndexPage } from "@/features/employees/pages/IndexPage";
 import { EmployeeShowPage } from "@/features/employees/pages/ShowPage";
+import { appRoutes } from "@/features/navigation/routes";
 import { createBrowserRouter } from "react-router-dom";
 import { LoginPage } from "../../features/auth/pages/LoginPage";
 import { CountryIndexPage } from "../../features/countries/pages/IndexPage";
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <PublicLayout />,
-        children: [{ path: "/login", element: <LoginPage /> }],
+        children: [{ path: appRoutes.auth.login, element: <LoginPage /> }],
       },
       {
         element: <RequireAuth />,
@@ -25,14 +26,14 @@ export const router = createBrowserRouter([
           {
             element: <AppLayout />,
             children: [
-              { path: "/", element: <div>App Home</div> },
+              { path: appRoutes.home, element: <div>App Home</div> },
               {
                 element: (
                   <RequirePermission resource="countries" action="show" />
                 ),
                 children: [
                   {
-                    path: "/main-data/countries",
+                    path: appRoutes.country.index,
                     element: <CountryIndexPage />,
                   },
                 ],
@@ -43,26 +44,26 @@ export const router = createBrowserRouter([
                 ),
                 children: [
                   {
-                    path: "/main-data/employees",
+                    path: appRoutes.employee.index,
                     element: <EmployeeIndexPage />,
                   },
                   {
-                    path: "/main-data/employees/create",
+                    path: appRoutes.employee.create,
                     element: <EmployeeCreatePage />,
                   },
                   {
-                    path: "/main-data/employees/:id",
+                    path: appRoutes.employee.showTemplate,
                     element: <EmployeeShowPage />,
                   },
                   {
-                    path: "/main-data/employees/:id/edit",
+                    path: appRoutes.employee.editTemplate,
                     element: <EmployeeEditPage />,
                   },
                 ],
               },
-              { path: "/main-data/cities", element: <div>Cities</div> },
-              { path: "/main-data/states", element: <div>States</div> },
-              { path: "/main-data/languages", element: <div>Languages</div> },
+              { path: appRoutes.city.index, element: <div>Cities</div> },
+              { path: appRoutes.state.index, element: <div>States</div> },
+              { path: appRoutes.language.index, element: <div>Languages</div> },
             ],
           },
         ],

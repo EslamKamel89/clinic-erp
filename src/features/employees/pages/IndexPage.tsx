@@ -1,3 +1,4 @@
+import { appRoutes } from "@/features/navigation/routes";
 import { TText } from "@/shared/components/localization/TText";
 import { Pagination } from "@/shared/components/pagination/Pagination";
 import { DataTable } from "@/shared/components/table/DataTable";
@@ -37,6 +38,7 @@ export const EmployeeIndexPage = () => {
 
   const canShow = can("employees", "show");
 
+  const hasActions = canShow || canUpdate || canDelete;
   const columns: Column<Employee>[] = [
     {
       id: "name",
@@ -93,14 +95,12 @@ export const EmployeeIndexPage = () => {
 
       accessor: (row) => row.notes,
     },
-
-    {
+  ];
+  if (hasActions) {
+    columns.push({
       id: "actions",
-
-      label: "",
-
+      label: <TText ns="p008" k="actions" width={8} />,
       accessor: () => null,
-
       render: (_, row) => (
         <div className="flex items-center justify-end gap-1">
           {canShow && (
@@ -109,26 +109,24 @@ export const EmployeeIndexPage = () => {
               size="icon"
               className="text-muted-foreground hover:text-foreground"
               onClick={() => {
-                navigate(`/main-data/employees/${row.id}`);
+                navigate(appRoutes.employee.show(row.id));
               }}
             >
               <Eye className="size-4" />
             </Button>
           )}
-
           {canUpdate && (
             <Button
               variant="ghost"
               size="icon"
               className="text-muted-foreground hover:text-foreground"
               onClick={() => {
-                navigate(`/main-data/employees/${row.id}/edit`);
+                navigate(appRoutes.employee.edit(row.id));
               }}
             >
               <Pencil className="size-4" />
             </Button>
           )}
-
           {canDelete && (
             <Button
               variant="ghost"
@@ -140,8 +138,8 @@ export const EmployeeIndexPage = () => {
           )}
         </div>
       ),
-    },
-  ];
+    });
+  }
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -159,7 +157,7 @@ export const EmployeeIndexPage = () => {
         {canCreate && (
           <Button
             onClick={() => {
-              navigate("/main-data/employees/create");
+              navigate(appRoutes.employee.create);
             }}
           >
             <TText ns="p008" k="add" width={10} />
