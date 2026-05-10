@@ -48,8 +48,8 @@ export type Employee = {
   birthDate: string;
   countryName: string;
   countryId: number | null;
-  districtName: string;
-  districtId: number | null;
+  stateName: string;
+  stateId: number | null;
   cityName: string;
   cityId: number | null;
   notes: string;
