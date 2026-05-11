@@ -1,5 +1,10 @@
 {
     "username_required": "Username is required",
     "password_required": "Password is required",
-    "name_required": "Name is required"
+    "name_required": "Name is required",
+    "invalid_email": "Invalid email address",
+    "gender_required": "Gender is required",
+    "branch_required": "Branch is required",
+    "military_status_required": "Military status is required",
+    "job_required": "Job is required"
 }

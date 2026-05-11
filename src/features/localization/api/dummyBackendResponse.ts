@@ -251,6 +251,46 @@ export function dummyBackendResponse(
           key: "show",
           label: "Employee Details",
         },
+        {
+          key: "basic_information",
+          label: "Basic Information",
+        },
+        {
+          key: "personal_information",
+          label: "Personal Information",
+        },
+        {
+          key: "contact_information",
+          label: "Contact Information",
+        },
+        {
+          key: "location_information",
+          label: "Location",
+        },
+        {
+          key: "additional_notes",
+          label: "Additional Notes",
+        },
+        {
+          key: "basic_information_description",
+          label: "Main employee identity and assignment data",
+        },
+        {
+          key: "personal_information_description",
+          label: "Identification and personal records",
+        },
+        {
+          key: "contact_information_description",
+          label: "Communication and address details",
+        },
+        {
+          key: "location_information_description",
+          label: "Country, state, and city information",
+        },
+        {
+          key: "employee_availability_status",
+          label: "Employee availability status",
+        },
       ],
 
       ar: [
@@ -401,6 +441,46 @@ export function dummyBackendResponse(
         {
           key: "show",
           label: "تفاصيل الموظف",
+        },
+        {
+          key: "basic_information",
+          label: "البيانات الأساسية",
+        },
+        {
+          key: "personal_information",
+          label: "البيانات الشخصية",
+        },
+        {
+          key: "contact_information",
+          label: "بيانات التواصل",
+        },
+        {
+          key: "location_information",
+          label: "الموقع",
+        },
+        {
+          key: "additional_notes",
+          label: "ملاحظات إضافية",
+        },
+        {
+          key: "basic_information_description",
+          label: "بيانات تعريف الموظف والبيانات الوظيفية الأساسية",
+        },
+        {
+          key: "personal_information_description",
+          label: "بيانات الهوية والسجلات الشخصية",
+        },
+        {
+          key: "contact_information_description",
+          label: "بيانات التواصل والعنوان",
+        },
+        {
+          key: "location_information_description",
+          label: "بيانات الدولة والمحافظة والمدينة",
+        },
+        {
+          key: "employee_availability_status",
+          label: "حالة توفر الموظف",
         },
       ],
     },

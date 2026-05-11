@@ -1,5 +1,10 @@
 {
     "username_required": "اسم المستخدم مطلوب",
     "password_required": "كلمة المرور مطلوبة",
-    "name_required": "الاسم مطلوب"
+    "name_required": "الاسم مطلوب",
+    "invalid_email": "البريد الإلكتروني غير صالح",
+    "gender_required": "النوع مطلوب",
+    "branch_required": "الفرع مطلوب",
+    "military_status_required": "الموقف العسكري مطلوب",
+    "job_required": "الوظيفة مطلوبة"
 }
