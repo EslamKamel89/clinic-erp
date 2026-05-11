@@ -1,14 +1,14 @@
-import { appRoutes } from "@/features/navigation/routes";
 import { TText } from "@/shared/components/localization/TText";
 import { useNavigate } from "react-router-dom";
 import { EmployeeForm } from "../components/EmployeeForm";
+import { useCreateEmployee } from "../hooks/useCreateEmployee";
 import { useEmployeeDetails } from "../hooks/useEmployeeDetails";
 
 export const EmployeeCreatePage = () => {
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useEmployeeDetails(0);
-
+  const createMutation = useCreateEmployee();
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-10">
@@ -41,8 +41,7 @@ export const EmployeeCreatePage = () => {
         jobs={data.lookups.jobs}
         onSubmit={(values) => {
           console.log(values);
-
-          navigate(appRoutes.employee.index);
+          createMutation.mutate(values);
         }}
       />
     </div>

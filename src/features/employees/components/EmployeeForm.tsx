@@ -56,7 +56,8 @@ export const EmployeeForm = ({
   jobs,
   onSubmit,
 }: Props) => {
-  const { t } = useLocalization("validation");
+  const { t } = useLocalization("p008");
+  const { t: tValidation } = useLocalization("validation");
 
   const form = useForm<EmployeeSchema>({
     resolver: zodResolver(employeeSchema),
@@ -91,6 +92,7 @@ export const EmployeeForm = ({
     watch,
     formState: { errors },
   } = form;
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       {/* Status */}
@@ -102,7 +104,7 @@ export const EmployeeForm = ({
             </Label>
 
             <p className="text-xs text-muted-foreground">
-              Employee availability status
+              <TText ns="p008" k="employee_availability_status" width={24} />
             </p>
           </div>
 
@@ -124,11 +126,11 @@ export const EmployeeForm = ({
       <section className="space-y-5">
         <div className="space-y-1">
           <h2 className="text-base font-semibold tracking-tight">
-            Basic Information
+            <TText ns="p008" k="basic_information" width={16} />
           </h2>
 
           <p className="text-sm text-muted-foreground">
-            Main employee identity and assignment data
+            <TText ns="p008" k="basic_information_description" width={32} />
           </p>
         </div>
 
@@ -141,7 +143,9 @@ export const EmployeeForm = ({
 
             <Input disabled={disabled} {...register("name")} />
 
-            {errors.name && <FieldError>{t(errors.name.message!)}</FieldError>}
+            {errors.name && (
+              <FieldError>{tValidation(errors.name.message!)}</FieldError>
+            )}
           </Field>
 
           {/* Gender */}
@@ -178,7 +182,7 @@ export const EmployeeForm = ({
             />
 
             {errors.genderId && (
-              <FieldError>{t(errors.genderId.message!)}</FieldError>
+              <FieldError>{tValidation(errors.genderId.message!)}</FieldError>
             )}
           </Field>
 
@@ -216,7 +220,7 @@ export const EmployeeForm = ({
             />
 
             {errors.branchId && (
-              <FieldError>{t(errors.branchId.message!)}</FieldError>
+              <FieldError>{tValidation(errors.branchId.message!)}</FieldError>
             )}
           </Field>
 
@@ -251,7 +255,7 @@ export const EmployeeForm = ({
             />
 
             {errors.jobId && (
-              <FieldError>{t(errors.jobId.message!)}</FieldError>
+              <FieldError>{tValidation(errors.jobId.message!)}</FieldError>
             )}
           </Field>
         </div>
@@ -261,11 +265,11 @@ export const EmployeeForm = ({
       <section className="space-y-5">
         <div className="space-y-1">
           <h2 className="text-base font-semibold tracking-tight">
-            Personal Information
+            <TText ns="p008" k="personal_information" width={18} />
           </h2>
 
           <p className="text-sm text-muted-foreground">
-            Identification and personal records
+            <TText ns="p008" k="personal_information_description" width={28} />
           </p>
         </div>
 
@@ -279,7 +283,7 @@ export const EmployeeForm = ({
             <Input disabled={disabled} {...register("nationalId")} />
 
             {errors.nationalId && (
-              <FieldError>{t(errors.nationalId.message!)}</FieldError>
+              <FieldError>{tValidation(errors.nationalId.message!)}</FieldError>
             )}
           </Field>
 
@@ -292,7 +296,7 @@ export const EmployeeForm = ({
             <Input disabled={disabled} {...register("socialId")} />
 
             {errors.socialId && (
-              <FieldError>{t(errors.socialId.message!)}</FieldError>
+              <FieldError>{tValidation(errors.socialId.message!)}</FieldError>
             )}
           </Field>
 
@@ -305,9 +309,10 @@ export const EmployeeForm = ({
             <Input type="date" disabled={disabled} {...register("birthDate")} />
 
             {errors.birthDate && (
-              <FieldError>{t(errors.birthDate.message!)}</FieldError>
+              <FieldError>{tValidation(errors.birthDate.message!)}</FieldError>
             )}
           </Field>
+
           {/* Military Status */}
           <Field className="space-y-2">
             <FieldLabel>
@@ -341,6 +346,7 @@ export const EmployeeForm = ({
               )}
             />
           </Field>
+
           {/* Marital Status */}
           <Field className="space-y-2">
             <FieldLabel>
@@ -357,7 +363,7 @@ export const EmployeeForm = ({
                   onValueChange={(value) => field.onChange(Number(value))}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder={t("select_martial_status")} />
+                    <SelectValue placeholder={t("select_marital_status")} />
                   </SelectTrigger>
 
                   <SelectContent>
@@ -381,11 +387,11 @@ export const EmployeeForm = ({
       <section className="space-y-5">
         <div className="space-y-1">
           <h2 className="text-base font-semibold tracking-tight">
-            Contact Information
+            <TText ns="p008" k="contact_information" width={18} />
           </h2>
 
           <p className="text-sm text-muted-foreground">
-            Communication and address details
+            <TText ns="p008" k="contact_information_description" width={28} />
           </p>
         </div>
 
@@ -399,7 +405,7 @@ export const EmployeeForm = ({
             <Input disabled={disabled} {...register("phone")} />
 
             {errors.phone && (
-              <FieldError>{t(errors.phone.message!)}</FieldError>
+              <FieldError>{tValidation(errors.phone.message!)}</FieldError>
             )}
           </Field>
 
@@ -412,7 +418,7 @@ export const EmployeeForm = ({
             <Input disabled={disabled} {...register("mobile")} />
 
             {errors.mobile && (
-              <FieldError>{t(errors.mobile.message!)}</FieldError>
+              <FieldError>{tValidation(errors.mobile.message!)}</FieldError>
             )}
           </Field>
 
@@ -428,7 +434,7 @@ export const EmployeeForm = ({
             <Input disabled={disabled} {...register("email")} />
 
             {errors.email && (
-              <FieldError>{t(errors.email.message!)}</FieldError>
+              <FieldError>{tValidation(errors.email.message!)}</FieldError>
             )}
           </Field>
 
@@ -444,7 +450,7 @@ export const EmployeeForm = ({
             <Input disabled={disabled} {...register("address")} />
 
             {errors.address && (
-              <FieldError>{t(errors.address.message!)}</FieldError>
+              <FieldError>{tValidation(errors.address.message!)}</FieldError>
             )}
           </Field>
         </div>
@@ -453,10 +459,12 @@ export const EmployeeForm = ({
       {/* Location */}
       <section className="space-y-5">
         <div className="space-y-1">
-          <h2 className="text-base font-semibold tracking-tight">Location</h2>
+          <h2 className="text-base font-semibold tracking-tight">
+            <TText ns="p008" k="location_information" width={12} />
+          </h2>
 
           <p className="text-sm text-muted-foreground">
-            Country, state, and city information
+            <TText ns="p008" k="location_information_description" width={28} />
           </p>
         </div>
 
@@ -482,7 +490,7 @@ export const EmployeeForm = ({
       <section className="space-y-5">
         <div className="space-y-1">
           <h2 className="text-base font-semibold tracking-tight">
-            Additional Notes
+            <TText ns="p008" k="additional_notes" width={16} />
           </h2>
         </div>
 

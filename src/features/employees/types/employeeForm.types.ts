@@ -5,7 +5,7 @@ export type EmployeeFormValues = {
   address: string;
   phone: string;
   mobile: string;
-  email: string;
+  email: string | null;
   genderId: number | undefined;
   branchId: number | undefined;
   socialId: string;

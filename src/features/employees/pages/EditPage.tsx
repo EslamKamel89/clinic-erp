@@ -1,4 +1,3 @@
-import { appRoutes } from "@/features/navigation/routes";
 import { ErrorState } from "@/shared/components/error/ErrorState";
 import { TText } from "@/shared/components/localization/TText";
 import { queryClientKeys } from "@/shared/lib/query/keys";
@@ -6,6 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { EmployeeForm } from "../components/EmployeeForm";
 import { useEmployeeDetails } from "../hooks/useEmployeeDetails";
+import { useUpdateEmployee } from "../hooks/useUpdateEmployee";
 import { serializeEmployeeToFormValues } from "../serializers/employeeForm.serializer";
 
 export const EmployeeEditPage = () => {
@@ -13,6 +13,7 @@ export const EmployeeEditPage = () => {
   const id = Number(params.id);
   const { data, isLoading, isError } = useEmployeeDetails(id);
   const queryClient = useQueryClient();
+  const updateMutation = useUpdateEmployee();
   const navigate = useNavigate();
   if (isLoading) {
     return (
@@ -50,7 +51,7 @@ export const EmployeeEditPage = () => {
           jobs={data.lookups.jobs}
           onSubmit={(values) => {
             console.log(values);
-            navigate(appRoutes.employee.index);
+            updateMutation.mutate({ id, values });
           }}
         />
       )}
