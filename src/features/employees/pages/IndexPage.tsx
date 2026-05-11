@@ -1,4 +1,5 @@
 import { appRoutes } from "@/features/navigation/routes";
+import { ErrorState } from "@/shared/components/error/ErrorState";
 import { TText } from "@/shared/components/localization/TText";
 import { Pagination } from "@/shared/components/pagination/Pagination";
 import { DataTable } from "@/shared/components/table/DataTable";
@@ -182,26 +183,14 @@ export const EmployeeIndexPage = () => {
 
       {/* Error State */}
       {isError && !isLoading && (
-        <div className="flex items-center justify-center py-16">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <p className="text-sm text-destructive">
-              <TText ns="p008" k="error" width={16} />
-            </p>
-
-            <Button
-              variant="outline"
-              onClick={async () => {
-                await queryClient.invalidateQueries({
-                  queryKey: queryClientKeys.employees.main,
-                });
-
-                setPage(1);
-              }}
-            >
-              <TText ns="p008" k="retry" width={6} />
-            </Button>
-          </div>
-        </div>
+        <ErrorState
+          onRetry={async () => {
+            await queryClient.invalidateQueries({
+              queryKey: queryClientKeys.employees.main,
+            });
+            setPage(1);
+          }}
+        />
       )}
 
       {/* Success State */}
