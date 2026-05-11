@@ -7,11 +7,12 @@ import type { Column } from "@/shared/components/table/types";
 import { usePermissions } from "@/shared/lib/permissions/usePermissions";
 import { queryClientKeys } from "@/shared/lib/query/keys";
 import { useQueryClient } from "@tanstack/react-query";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Eye, Pencil } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/ui/button";
 import { Separator } from "../../../components/ui/separator";
+import { DeleteEmployeeButton } from "../components/DeleteEmployeeButton";
 import { useEmployees } from "../hooks/useEmployees";
 import type { Employee } from "../types/employee.types";
 
@@ -129,13 +130,16 @@ export const EmployeeIndexPage = () => {
             </Button>
           )}
           {canDelete && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-destructive hover:text-destructive"
-            >
-              <Trash2 className="size-4" />
-            </Button>
+            <DeleteEmployeeButton
+              employee={row}
+              onDelete={() => {
+                const isLastItemOnPage = items?.length === 1;
+
+                if (isLastItemOnPage && page > 1) {
+                  setPage((prev) => prev - 1);
+                }
+              }}
+            />
           )}
         </div>
       ),

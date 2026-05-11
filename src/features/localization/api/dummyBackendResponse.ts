@@ -291,6 +291,26 @@ export function dummyBackendResponse(
           key: "employee_availability_status",
           label: "Employee availability status",
         },
+        {
+          key: "delete_title",
+          label: "Delete Employee",
+        },
+        {
+          key: "delete_confirm",
+          label: "Are you sure you want to delete this employee?",
+        },
+        {
+          key: "delete",
+          label: "Delete",
+        },
+        {
+          key: "deleting",
+          label: "Deleting...",
+        },
+        {
+          key: "cancel",
+          label: "Cancel",
+        },
       ],
 
       ar: [
@@ -481,6 +501,26 @@ export function dummyBackendResponse(
         {
           key: "employee_availability_status",
           label: "حالة توفر الموظف",
+        },
+        {
+          key: "delete_title",
+          label: "حذف الموظف",
+        },
+        {
+          key: "delete_confirm",
+          label: "هل أنت متأكد من حذف الموظف؟",
+        },
+        {
+          key: "delete",
+          label: "حذف",
+        },
+        {
+          key: "deleting",
+          label: "جاري الحذف...",
+        },
+        {
+          key: "cancel",
+          label: "إلغاء",
         },
       ],
     },
