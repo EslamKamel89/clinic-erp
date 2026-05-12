@@ -5,7 +5,7 @@ export type EmployeePayload = {
   Address: string;
   Phone: string;
   Mobile: string;
-  Email: string;
+  Email: string | null;
   Gender_ID: number | null;
   Branch_ID: number | null;
   SocialID: string;
