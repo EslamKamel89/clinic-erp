@@ -1,4 +1,6 @@
+import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,7 +10,9 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "../../../components/ui/dropdown-menu";
+
 import i18n from "../../../shared/lib/localization/i18n";
+
 import type { MenuItem } from "../../auth/types/auth.types";
 
 type Props = {
@@ -19,36 +23,47 @@ export const MenuItemParentDesktop = ({ item }: Props) => {
   return (
     <DropdownMenu dir={i18n.dir()}>
       <DropdownMenuTrigger asChild>
-        <span
+        <button
           className="
-            px-3 py-1.5
-            text-sm font-semibold
-            rounded-md
-            cursor-pointer
-            transition-all duration-150
+            group relative overflow-hidden rounded-xl
+            px-4 py-2
+            text-sm font-medium
             text-foreground/80
-            hover:text-primary
-            hover:bg-muted
+            transition-all duration-200
+
+            hover:bg-accent/70
+            hover:text-foreground
+
+            data-[state=open]:bg-primary
+            data-[state=open]:text-primary-foreground
+            data-[state=open]:shadow-sm
           "
         >
-          {item.label}
-        </span>
+          {/* Glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+          <span className="relative">{item.label}</span>
+        </button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
         align="start"
+        sideOffset={10}
         className="
-          min-w-[200px]
-          p-1
-          rounded-lg
-          border
-          bg-popover
-          shadow-md
+          min-w-[240px]
+          rounded-2xl
+          border border-border/60
+          bg-popover/95
+          p-2
+          shadow-xl
+          backdrop-blur-xl
         "
       >
-        {item.children?.map((child) => (
-          <MenuItemNodeDesktop key={child.label} item={child} />
-        ))}
+        <div className="space-y-1">
+          {item.children?.map((child) => (
+            <MenuItemNodeDesktop key={child.label} item={child} />
+          ))}
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -62,14 +77,22 @@ export const MenuItemNodeDesktop = ({ item }: Props) => {
       <DropdownMenuItem
         asChild
         className="
-          rounded-md
-          px-2 py-1.5
+          rounded-xl
+          px-3 py-2.5
           text-sm
-          transition-colors
-          hover:bg-muted
+          text-muted-foreground
+          transition-all duration-150
+
+          hover:bg-accent/70
+          hover:text-foreground
+
+          focus:bg-accent/70
+          focus:text-foreground
         "
       >
-        <Link to={item.path || "#"}>{item.label}</Link>
+        <Link to={item.path || "#"} className="w-full">
+          {item.label}
+        </Link>
       </DropdownMenuItem>
     );
   }
@@ -78,30 +101,46 @@ export const MenuItemNodeDesktop = ({ item }: Props) => {
     <DropdownMenuSub>
       <DropdownMenuSubTrigger
         className="
-          rounded-md
-          px-2 py-1.5
-          text-sm
-          font-medium
-          transition-colors
-          hover:bg-muted
+          group rounded-xl
+          px-3 py-2.5
+          text-sm font-medium
+          text-foreground/90
+          transition-all duration-150
+
+          hover:bg-accent/70
+          focus:bg-accent/70
         "
       >
-        {item.label}
+        <div className="flex w-full items-center justify-between">
+          <span>{item.label}</span>
+
+          <ChevronRight
+            className="
+              size-4 text-muted-foreground
+              transition-transform duration-200
+              group-data-[state=open]:translate-x-0.5
+            "
+          />
+        </div>
       </DropdownMenuSubTrigger>
 
       <DropdownMenuSubContent
+        sideOffset={8}
         className="
-          min-w-[200px]
-          p-1
-          rounded-lg
-          border
-          bg-popover
-          shadow-md
+          min-w-[220px]
+          rounded-2xl
+          border border-border/60
+          bg-popover/95
+          p-2
+          shadow-xl
+          backdrop-blur-xl
         "
       >
-        {item.children!.map((child) => (
-          <MenuItemNodeDesktop key={child.label} item={child} />
-        ))}
+        <div className="space-y-1">
+          {item.children!.map((child) => (
+            <MenuItemNodeDesktop key={child.label} item={child} />
+          ))}
+        </div>
       </DropdownMenuSubContent>
     </DropdownMenuSub>
   );

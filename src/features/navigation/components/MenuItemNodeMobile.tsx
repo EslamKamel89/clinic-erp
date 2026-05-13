@@ -10,7 +10,9 @@ type Props = {
 
 export const MenuItemNodeMobile = ({ item, onNavigate }: Props) => {
   const [open, setOpen] = useState(false);
+
   const hasChildren = item.children && item.children.length > 0;
+
   const navigate = useNavigate();
 
   return (
@@ -18,21 +20,34 @@ export const MenuItemNodeMobile = ({ item, onNavigate }: Props) => {
       {/* Item */}
       <div
         className={`
-          flex items-center justify-between rounded-md px-3 py-2 text-sm transition-all
+          group flex items-center justify-between rounded-xl border border-transparent px-3 py-2.5 text-sm transition-all duration-200
           ${
             hasChildren
-              ? "cursor-pointer bg-muted/40 hover:bg-muted font-semibold"
-              : "hover:bg-muted text-muted-foreground hover:text-foreground"
+              ? `
+                cursor-pointer
+                bg-muted/40
+                hover:border-border/60
+                hover:bg-accent/60
+                text-foreground
+                font-medium
+              `
+              : `
+                text-muted-foreground
+                hover:bg-accent/60
+                hover:text-foreground
+              `
           }
         `}
         onClick={() => hasChildren && setOpen((p) => !p)}
       >
         {!hasChildren ? (
           <button
-            className="w-full text-start ps-2"
+            className="w-full text-start"
             onClick={(e) => {
               e.stopPropagation();
+
               if (onNavigate) onNavigate();
+
               if (item.path) navigate(item.path);
             }}
           >
@@ -41,10 +56,12 @@ export const MenuItemNodeMobile = ({ item, onNavigate }: Props) => {
         ) : (
           <>
             <span>{item.label}</span>
+
             <ChevronDown
-              className={`size-4 transition-transform ${
-                open ? "rotate-180" : ""
-              }`}
+              className={`
+                size-4 text-muted-foreground transition-all duration-200
+                ${open ? "rotate-180 text-foreground" : ""}
+              `}
             />
           </>
         )}
@@ -52,7 +69,10 @@ export const MenuItemNodeMobile = ({ item, onNavigate }: Props) => {
 
       {/* Children */}
       {hasChildren && open && (
-        <div className="ms-3 border-l border-muted ps-3 space-y-1">
+        <div className="relative ms-4 mt-1 flex flex-col gap-1 border-s border-border/70 ps-4">
+          {/* Decorative line glow */}
+          <div className="absolute inset-y-0 start-[-1px] w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
+
           {item.children?.map((child) => (
             <MenuItemNodeMobile
               key={child.path ?? child.label}
