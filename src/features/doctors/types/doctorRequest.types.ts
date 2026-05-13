@@ -1,0 +1,20 @@
+export type DoctorPayload = {
+  Obj_Name: string;
+  Active: boolean;
+  IDNo: string;
+  Address: string;
+  Phone: string;
+  Mobile: string;
+  Email: string | null;
+  Gender_ID: number | null;
+  Branch_ID: number | null;
+  SocialID: string;
+  Marital_Status: number | null;
+  Millitary_ID: number | null;
+  BirthDate: string | null;
+  Country_ID: number | null;
+  State_ID: number | null;
+  City_ID: number | null;
+  Specialty_ID: number | null;
+  Notes: string | null;
+};

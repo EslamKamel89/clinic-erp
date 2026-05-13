@@ -63,6 +63,7 @@ export type LoginResponseRaw = {
     States: Action[];
     Cities: Action[];
     Employees: Action[];
+    Doctors: Action[];
   };
 };
 
@@ -82,4 +83,5 @@ export type Permissions = {
   states: Action[];
   cities: Action[];
   employees: Action[];
+  doctors: Action[];
 };

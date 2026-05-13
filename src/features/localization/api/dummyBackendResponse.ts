@@ -524,6 +524,429 @@ export function dummyBackendResponse(
         },
       ],
     },
+    p009: {
+      en: [
+        {
+          key: "title",
+          label: "Doctors",
+        },
+        {
+          key: "subtitle",
+          label: "Manage and view doctors",
+        },
+        {
+          key: "add",
+          label: "Add Doctor",
+        },
+        {
+          key: "loading",
+          label: "Loading doctors...",
+        },
+        {
+          key: "error",
+          label: "Failed to load doctors",
+        },
+        {
+          key: "retry",
+          label: "Retry",
+        },
+        {
+          key: "empty",
+          label: "No doctors found",
+        },
+        {
+          key: "name",
+          label: "Name",
+        },
+        {
+          key: "phone",
+          label: "Phone",
+        },
+        {
+          key: "mobile",
+          label: "Mobile",
+        },
+        {
+          key: "email",
+          label: "Email",
+        },
+        {
+          key: "branch",
+          label: "Branch",
+        },
+        {
+          key: "specialty_name",
+          label: "Specialty",
+        },
+        {
+          key: "gender",
+          label: "Gender",
+        },
+        {
+          key: "military_status",
+          label: "Military Status",
+        },
+        {
+          key: "marital_status",
+          label: "Marital Status",
+        },
+        {
+          key: "birth_date",
+          label: "Birth Date",
+        },
+        {
+          key: "national_id",
+          label: "National ID",
+        },
+        {
+          key: "social_id",
+          label: "Social ID",
+        },
+        {
+          key: "address",
+          label: "Address",
+        },
+        {
+          key: "notes",
+          label: "Notes",
+        },
+        {
+          key: "country",
+          label: "Country",
+        },
+        {
+          key: "state",
+          label: "State",
+        },
+        {
+          key: "city",
+          label: "City",
+        },
+        {
+          key: "active",
+          label: "Active",
+        },
+        {
+          key: "actions",
+          label: "Actions",
+        },
+        {
+          key: "save",
+          label: "Save",
+        },
+        {
+          key: "select_country",
+          label: "Select Country",
+        },
+        {
+          key: "select_state",
+          label: "Select State",
+        },
+        {
+          key: "select_city",
+          label: "Select City",
+        },
+        {
+          key: "select_gender",
+          label: "Select Gender",
+        },
+        {
+          key: "select_branch",
+          label: "Select Branch",
+        },
+        {
+          key: "select_specialty",
+          label: "Select Specialty",
+        },
+        {
+          key: "select_military_status",
+          label: "Select Military Status",
+        },
+        {
+          key: "select_marital_status",
+          label: "Select Marital Status",
+        },
+        {
+          key: "edit",
+          label: "Edit Doctor",
+        },
+        {
+          key: "show",
+          label: "Doctor Details",
+        },
+        {
+          key: "basic_information",
+          label: "Basic Information",
+        },
+        {
+          key: "personal_information",
+          label: "Personal Information",
+        },
+        {
+          key: "contact_information",
+          label: "Contact Information",
+        },
+        {
+          key: "location_information",
+          label: "Location",
+        },
+        {
+          key: "additional_notes",
+          label: "Additional Notes",
+        },
+        {
+          key: "basic_information_description",
+          label: "Main doctor identity and assignment data",
+        },
+        {
+          key: "personal_information_description",
+          label: "Identification and personal records",
+        },
+        {
+          key: "contact_information_description",
+          label: "Communication and address details",
+        },
+        {
+          key: "location_information_description",
+          label: "Country, state, and city information",
+        },
+        {
+          key: "doctor_availability_status",
+          label: "Doctor availability status",
+        },
+        {
+          key: "delete_title",
+          label: "Delete Doctor",
+        },
+        {
+          key: "delete_confirm",
+          label: "Are you sure you want to delete this doctor?",
+        },
+        {
+          key: "delete",
+          label: "Delete",
+        },
+        {
+          key: "deleting",
+          label: "Deleting...",
+        },
+        {
+          key: "cancel",
+          label: "Cancel",
+        },
+      ],
+
+      ar: [
+        {
+          key: "title",
+          label: "الاطباء",
+        },
+        {
+          key: "subtitle",
+          label: "إدارة وعرض الاطباء",
+        },
+        {
+          key: "add",
+          label: "إضافة طبيب",
+        },
+        {
+          key: "loading",
+          label: "جاري تحميل الاطباء",
+        },
+        {
+          key: "error",
+          label: "فشل تحميل الاطباء",
+        },
+        {
+          key: "retry",
+          label: "إعادة المحاولة",
+        },
+        {
+          key: "empty",
+          label: "لا يوجد دكاترة",
+        },
+        {
+          key: "name",
+          label: "الاسم",
+        },
+        {
+          key: "phone",
+          label: "الهاتف",
+        },
+        {
+          key: "mobile",
+          label: "الموبايل",
+        },
+        {
+          key: "email",
+          label: "البريد الإلكتروني",
+        },
+        {
+          key: "branch",
+          label: "الفرع",
+        },
+        {
+          key: "specialty_name",
+          label: "التخصص",
+        },
+        {
+          key: "gender",
+          label: "النوع",
+        },
+        {
+          key: "military_status",
+          label: "الموقف العسكري",
+        },
+        {
+          key: "marital_status",
+          label: "الحالة الاجتماعية",
+        },
+        {
+          key: "birth_date",
+          label: "تاريخ الميلاد",
+        },
+        {
+          key: "national_id",
+          label: "الرقم القومي",
+        },
+        {
+          key: "social_id",
+          label: "الرقم التأميني",
+        },
+        {
+          key: "address",
+          label: "العنوان",
+        },
+        {
+          key: "notes",
+          label: "ملاحظات",
+        },
+        {
+          key: "country",
+          label: "الدولة",
+        },
+        {
+          key: "state",
+          label: "المحافظة",
+        },
+        {
+          key: "city",
+          label: "المدينة",
+        },
+        {
+          key: "active",
+          label: "نشط",
+        },
+        {
+          key: "actions",
+          label: "الإجراءات",
+        },
+        {
+          key: "save",
+          label: "حفظ",
+        },
+        {
+          key: "select_country",
+          label: "اختر الدولة",
+        },
+        {
+          key: "select_state",
+          label: "اختر المحافظة",
+        },
+        {
+          key: "select_city",
+          label: "اختر المدينة",
+        },
+        {
+          key: "select_gender",
+          label: "اختر النوع",
+        },
+        {
+          key: "select_branch",
+          label: "اختر الفرع",
+        },
+        {
+          key: "select_specialty",
+          label: "اختر التخصص",
+        },
+        {
+          key: "select_military_status",
+          label: "اختر الموقف العسكري",
+        },
+        {
+          key: "select_marital_status",
+          label: "اختر الحالة الاجتماعية",
+        },
+        {
+          key: "edit",
+          label: "تعديل طبيب",
+        },
+        {
+          key: "show",
+          label: "تفاصيل الطبيب",
+        },
+        {
+          key: "basic_information",
+          label: "البيانات الأساسية",
+        },
+        {
+          key: "personal_information",
+          label: "البيانات الشخصية",
+        },
+        {
+          key: "contact_information",
+          label: "بيانات التواصل",
+        },
+        {
+          key: "location_information",
+          label: "الموقع",
+        },
+        {
+          key: "additional_notes",
+          label: "ملاحظات إضافية",
+        },
+        {
+          key: "basic_information_description",
+          label: "بيانات تعريف الطبيب والبيانات الوظيفية الأساسية",
+        },
+        {
+          key: "personal_information_description",
+          label: "بيانات الهوية والسجلات الشخصية",
+        },
+        {
+          key: "contact_information_description",
+          label: "بيانات التواصل والعنوان",
+        },
+        {
+          key: "location_information_description",
+          label: "بيانات الدولة والمحافظة والمدينة",
+        },
+        {
+          key: "doctor_availability_status",
+          label: "حالة توفر الطبيب",
+        },
+        {
+          key: "delete_title",
+          label: "حذف الطبيب",
+        },
+        {
+          key: "delete_confirm",
+          label: "هل أنت متأكد من حذف الطبيب؟",
+        },
+        {
+          key: "delete",
+          label: "حذف",
+        },
+        {
+          key: "deleting",
+          label: "جاري الحذف...",
+        },
+        {
+          key: "cancel",
+          label: "إلغاء",
+        },
+      ],
+    },
   };
   const namespaceData =
     localizationData[namespace as keyof typeof localizationData];

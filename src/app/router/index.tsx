@@ -1,3 +1,7 @@
+import { DoctorCreatePage } from "@/features/doctors/pages/CreatePage";
+import { DoctorEditPage } from "@/features/doctors/pages/EditPage";
+import { DoctorIndexPage } from "@/features/doctors/pages/IndexPage";
+import { DoctorShowPage } from "@/features/doctors/pages/ShowPage";
 import { EmployeeCreatePage } from "@/features/employees/pages/CreatePage";
 import { EmployeeEditPage } from "@/features/employees/pages/EditPage";
 import { EmployeeIndexPage } from "@/features/employees/pages/IndexPage";
@@ -38,6 +42,7 @@ export const router = createBrowserRouter([
                   },
                 ],
               },
+              // employee
               {
                 element: (
                   <RequirePermission resource="employees" action="show" />
@@ -76,6 +81,44 @@ export const router = createBrowserRouter([
                   },
                 ],
               },
+              // doctors
+              {
+                element: <RequirePermission resource="doctors" action="show" />,
+                children: [
+                  {
+                    path: appRoutes.doctor.index,
+                    element: <DoctorIndexPage />,
+                  },
+
+                  {
+                    path: appRoutes.doctor.showTemplate,
+                    element: <DoctorShowPage />,
+                  },
+                ],
+              },
+              {
+                element: (
+                  <RequirePermission resource="doctors" action="create" />
+                ),
+                children: [
+                  {
+                    path: appRoutes.doctor.create,
+                    element: <DoctorCreatePage />,
+                  },
+                ],
+              },
+              {
+                element: (
+                  <RequirePermission resource="doctors" action="update" />
+                ),
+                children: [
+                  {
+                    path: appRoutes.doctor.editTemplate,
+                    element: <DoctorEditPage />,
+                  },
+                ],
+              },
+
               { path: appRoutes.city.index, element: <div>Cities</div> },
               { path: appRoutes.state.index, element: <div>States</div> },
               { path: appRoutes.language.index, element: <div>Languages</div> },

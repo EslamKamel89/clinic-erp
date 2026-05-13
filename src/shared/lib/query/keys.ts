@@ -21,7 +21,15 @@ export const queryClientKeys = {
       return ["employees", "details", id];
     },
   },
-  //  i want to keep the dropdown data under separate key for reusability because later i will reuse the same component for example in the doctors resource.
+  doctors: {
+    main: ["doctors"],
+    index(page: number, limit: number) {
+      return ["doctors", page, limit];
+    },
+    details(id: number) {
+      return ["doctors", "details", id];
+    },
+  },
   dropdownData: {
     states(countryId: number) {
       return ["dropdownData", "states", countryId];

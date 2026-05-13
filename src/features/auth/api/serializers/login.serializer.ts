@@ -29,6 +29,7 @@ export function serializeLoginResponse(raw: LoginResponseRaw): AuthModel {
     states: rawPermissions.States ?? [],
     cities: rawPermissions.Cities ?? [],
     employees: rawPermissions.Employees ?? [],
+    doctors: rawPermissions.Doctors ?? [],
   };
   return {
     user,

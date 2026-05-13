@@ -1,0 +1,20 @@
+export type DoctorFormValues = {
+  name: string;
+  active: boolean;
+  nationalId: string;
+  address: string;
+  phone: string;
+  mobile: string;
+  email: string | null;
+  genderId: number | undefined;
+  branchId: number | undefined;
+  socialId: string;
+  maritalStatusId: number | null;
+  militaryStatusId: number | undefined;
+  birthDate: string;
+  countryId: number | null;
+  stateId: number | null;
+  cityId: number | null;
+  notes: string;
+  specialtyId: number | undefined;
+};
