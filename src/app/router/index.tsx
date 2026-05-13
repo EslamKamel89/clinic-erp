@@ -6,6 +6,7 @@ import { EmployeeCreatePage } from "@/features/employees/pages/CreatePage";
 import { EmployeeEditPage } from "@/features/employees/pages/EditPage";
 import { EmployeeIndexPage } from "@/features/employees/pages/IndexPage";
 import { EmployeeShowPage } from "@/features/employees/pages/ShowPage";
+import { HomePage } from "@/features/home/pages/HomePage";
 import { appRoutes } from "@/features/navigation/routes";
 import { createBrowserRouter } from "react-router-dom";
 import { LoginPage } from "../../features/auth/pages/LoginPage";
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
           {
             element: <AppLayout />,
             children: [
-              { path: appRoutes.home, element: <div>App Home</div> },
+              { path: appRoutes.home, element: <HomePage /> },
               {
                 element: (
                   <RequirePermission resource="countries" action="show" />

@@ -1,6 +1,7 @@
 // src/app/router/layouts/AppLayout.tsx
 
-import { Outlet } from "react-router-dom";
+import { appRoutes } from "@/features/navigation/routes";
+import { Link, Outlet } from "react-router-dom";
 import { useAuthSession } from "../../../features/auth/hooks/useAuthSession";
 import { useLogout } from "../../../features/auth/hooks/useLogout";
 import { useUserMenu } from "../../../features/auth/hooks/useUserMenu";
@@ -61,7 +62,7 @@ export const AppLayout = () => {
                 <span className="text-sm font-bold">C</span>
               </div>
 
-              <div className="flex flex-col leading-none">
+              <Link to={appRoutes.home} className="flex flex-col leading-none">
                 <span className="text-sm md:text-base font-semibold tracking-tight">
                   {t("system.app_title")}
                 </span>
@@ -69,7 +70,7 @@ export const AppLayout = () => {
                 <span className="hidden md:block text-xs text-muted-foreground">
                   Clinic Management Platform
                 </span>
-              </div>
+              </Link>
             </div>
 
             {/* Divider */}
