@@ -31,4 +31,7 @@ export const appRoutes = {
   language: {
     index: "/main-data/languages",
   },
+  appointment: {
+    workspace: "/appointments",
+  },
 };

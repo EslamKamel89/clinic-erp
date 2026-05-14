@@ -1,3 +1,4 @@
+import { AppointmentWorkspacePage } from "@/features/appointments/pages/AppointmentWorkspacePage";
 import { DoctorCreatePage } from "@/features/doctors/pages/CreatePage";
 import { DoctorEditPage } from "@/features/doctors/pages/EditPage";
 import { DoctorIndexPage } from "@/features/doctors/pages/IndexPage";
@@ -119,10 +120,13 @@ export const router = createBrowserRouter([
                   },
                 ],
               },
-
               { path: appRoutes.city.index, element: <div>Cities</div> },
               { path: appRoutes.state.index, element: <div>States</div> },
               { path: appRoutes.language.index, element: <div>Languages</div> },
+              {
+                path: appRoutes.appointment.workspace,
+                element: <AppointmentWorkspacePage />,
+              },
             ],
           },
         ],
